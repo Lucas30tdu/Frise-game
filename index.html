@@ -85,7 +85,7 @@ button.alt{background:var(--surf);color:var(--ink);border:1px solid var(--line)}
 #ec button{margin:8px 6px 0}
 #snd{border:1px solid var(--line);background:var(--surf);color:var(--ink);border-radius:999px;padding:6px 12px;font-size:16px;cursor:pointer}
 #snd.off{opacity:.45;text-decoration:line-through}
-#learn{position:fixed;inset:0;background:var(--bg);z-index:30;display:none;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+#learn{position:fixed;inset:0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:30;display:none;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
 #learn.on{display:flex}
 #lh{display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
 #ll{flex:1;overflow-y:auto;padding:0 16px 60px}
@@ -177,7 +177,7 @@ button.alt{border:0;background:var(--surf);color:var(--ink);box-shadow:0 8px 20p
 .tg input:checked{background:var(--fluo)}
 .tg input:checked::after{left:26px}
 .play{background:var(--fluo);color:#111;font-size:20px;font-weight:800;padding:18px;box-shadow:0 22px 44px -14px rgba(var(--fgrgb),.65)}
-#learn{background:var(--bg)}
+#learn{background:color-mix(in srgb,var(--bg) 80%,transparent)}
 .lr{grid-template-columns:118px 1fr;border-top:1px solid var(--line)}
 .lr b{font-size:26px;font-weight:800;letter-spacing:-.04em}
 .lr p{font-style:normal}
@@ -504,7 +504,7 @@ button:disabled:active{transform:none!important}
 <h3>Parties gratuites</h3>
 <p>Vous disposez de 3 parties gratuites par jour. La version premium débloque les parties sans limite, 200 cartes supplémentaires, 6 thèmes colorés, l’ajout de dates personnelles pour un jeu unique et le badge « Contributeur ».</p>
 </div>
-<h3 class="sec">À propos</h3><p class="note">Ce jeu est inspiré du jeu de société Timeline.</p><div class="sr"><span>Version</span><span class="sv">1.126</span></div><div class="sr"><span>Dernière mise à jour</span><span class="sv">29/10/2026</span></div><div class="sr"><span>Créateur</span><span class="sv">Lucas Courcy</span></div><button class="go alt" style="margin:18px 0 0;width:100%" onclick="resetPro()">Restaurer l’achat</button></template>
+<h3 class="sec">À propos</h3><p class="note">Ce jeu est inspiré du jeu de société Timeline.</p><div class="sr"><span>Version</span><span class="sv">1.127</span></div><div class="sr"><span>Dernière mise à jour</span><span class="sv">29/10/2026</span></div><div class="sr"><span>Créateur</span><span class="sv">Lucas Courcy</span></div><button class="go alt" style="margin:18px 0 0;width:100%" onclick="resetPro()">Restaurer l’achat</button></template>
 <div id="sets" class="ov"></div>
 <div id="scores" class="ov"></div>
 <div id="perso" class="ov"></div>
@@ -889,7 +889,7 @@ function learn(){
  [...PKS[PK].f()].filter(c=>c.r).sort((a,b)=>a[1]-b[1]).forEach(c=>{const r=document.createElement("div");r.className="lr";r.dataset.r=c.r||"";
   r.innerHTML='<b>'+fy(c[1])+'</b><div>'+chip(c[2])+'<div>'+eg(c[4])+" "+c[0]+'</div><p>'+c[3]+'</p></div>';L.appendChild(r)});
  if(!L.children.length)L.innerHTML='<p class="note" style="padding:16px 0">Aucune carte posée pour l’instant.</p>';
- $("end").classList.remove("on");$("learn").classList.add("on");
+ $("learn").classList.add("on");
  let pos=0,stop=false;L.scrollTop=0;L.onpointerdown=L.onwheel=()=>{stop=true};
  const step=()=>{if(stop||!$("learn").classList.contains("on"))return;pos+=1;L.scrollTop=pos;requestAnimationFrame(step)};
  requestAnimationFrame(step)}
@@ -1050,7 +1050,7 @@ $("joker").onclick=()=>{
  msg("Joker : la carte va dans l’un des deux emplacements en vert.")};
 $("snd").classList.toggle("off",!SND);
 $("snd").onclick=()=>{SND=!SND;try{localStorage.setItem("snd",SND?"1":"0")}catch(_){}$("snd").classList.toggle("off",!SND);if(SND){ac();SFX.pick()}};
-$("lx").onclick=()=>{$("learn").classList.remove("on");$("end").classList.add("on")};
+$("lx").onclick=()=>{$("learn").classList.remove("on")};
 $("hm").onclick=e=>{const b=e.target.closest("[data-k]");if(!b)return;if(b.dataset.k==="p"&&PKS[+b.dataset.v]&&PKS[+b.dataset.v].perso){if(!pro().u){paywall(setup);return}if(!persoCards().length){say("Ajoutez d’abord vos cartes dans Paramètres");return}}SEL[b.dataset.k]=+b.dataset.v;setup()};
 const dh=E.filter(e=>e[4]&&ok(e)).filter((e,i)=>i%7===0).sort((a,b)=>a[1]-b[1]).map(e=>'<i><span>'+eg(e[4])+'</span><b>'+fy(e[1])+'</b></i>').join("");$("dc").innerHTML='<div class="dr">'+dh+dh+'</div>';
 (function(){const H=$("home");if(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches)return;let tx=0,ty=0,cx=0,cy=0,last=-1e9;
