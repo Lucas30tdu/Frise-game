@@ -306,9 +306,9 @@ button:disabled:active{transform:none!important}
 @media (max-height:600px){#end>div{padding:14px 18px}#end h2{font-size:30px}.rc .big{font-size:38px}.rc{padding:12px}.st div{font-size:11px}}
 @media (max-height:520px){#an{display:none}:root{--sh:150px}header{padding:6px 16px 2px}.pl .sc{font-size:26px;margin:0 0 2px}#msg{display:none}#mm{margin-top:4px}#stage,#stage.compact{margin-top:4px}}
 .bg{position:fixed;inset:0;overflow:hidden;z-index:-1;pointer-events:none}
-.bg i{position:absolute;border-radius:50%;background:var(--fb);filter:blur(56px);opacity:.38;will-change:transform;translate:calc(var(--px,0)*var(--d)*1px) calc(var(--py,0)*var(--d)*1px)}
+.bg i{position:absolute;border-radius:50%;background:radial-gradient(closest-side,var(--c,var(--fb)) 0%,transparent 100%);opacity:.38;will-change:transform;translate:calc(var(--px,0)*var(--d)*1px) calc(var(--py,0)*var(--d)*1px)}
 .bg i:nth-child(1){width:72vmin;height:72vmin;left:-20vmin;top:10vh;--d:46;animation:b1 17s ease-in-out infinite alternate}
-.bg i:nth-child(2){width:58vmin;height:58vmin;right:-16vmin;top:34vh;--d:-68;background:var(--fm);opacity:.32;animation:b2 21s ease-in-out infinite alternate}
+.bg i:nth-child(2){width:58vmin;height:58vmin;right:-16vmin;top:34vh;--d:-68;--c:var(--fm);opacity:.32;animation:b2 21s ease-in-out infinite alternate}
 .bg i:nth-child(3){width:64vmin;height:64vmin;left:18vw;bottom:-24vmin;--d:30;opacity:.5;animation:b3 14s ease-in-out infinite alternate}
 @keyframes b1{to{transform:translate(22vw,-8vh) scale(1.18)}}
 @keyframes b2{to{transform:translate(-26vw,10vh) scale(.86)}}
@@ -317,8 +317,8 @@ button:disabled:active{transform:none!important}
 :root[data-theme="dark"] .bg i{opacity:.2}
 #home::after{animation:breathe 7s ease-in-out infinite alternate}
 @keyframes breathe{from{opacity:.55}to{opacity:1}}
-#home .logo{translate:calc(var(--px,0)*-10px) calc(var(--py,0)*-8px)}
-#home .brand h1{translate:calc(var(--px,0)*-6px) calc(var(--py,0)*-4px)}
+#home .logo{translate:calc(var(--px,0)*-18px) calc(var(--py,0)*-14px)}
+#home .brand h1{translate:calc(var(--px,0)*-10px) calc(var(--py,0)*-7px)}
 #home .brand .sub{position:relative;z-index:1;margin-top:18px}
 #home.on[data-s="1"]{display:flex;flex-direction:column;overflow:hidden}
 #home[data-s="1"] .deco{flex:none;--dh:clamp(64px,12vh,120px);--dh:clamp(64px,12dvh,120px);height:var(--dh)}
@@ -329,7 +329,7 @@ button:disabled:active{transform:none!important}
 #home .brand h1{font-size:clamp(52px,min(26vw,12vh),108px);font-size:clamp(52px,min(26vw,12dvh),108px)}
 #home .logo{width:clamp(72px,min(34vw,14vh),132px);width:clamp(72px,min(34vw,14dvh),132px)}
 #home[data-s="1"] .brand .sub{margin-top:clamp(8px,2vh,18px)}
-#home .deco{translate:calc(var(--px,0)*14px) 0}
+#home .deco{translate:calc(var(--px,0)*22px) 0}
 #mm{margin-top:12px;margin-bottom:0}
 .slot{transition:transform .15s,background .2s,border-color .2s,min-width .4s ease}
 #joker,#snd,#pz{box-sizing:border-box;height:44px;display:inline-flex;align-items:center;justify-content:center;padding:0 18px;line-height:1;flex:none}
@@ -361,6 +361,40 @@ button:disabled:active{transform:none!important}
 .tb th{font:500 11px ui-monospace,Menlo,monospace;color:var(--mute);padding:8px 6px;border-bottom:1px solid var(--line);white-space:nowrap}
 .tb td{padding:12px 6px;border-bottom:1px solid var(--line);white-space:nowrap}
 .tb td.n{font-weight:800;font-variant-numeric:tabular-nums}
+.ov .sr.lk{opacity:.45}
+.tg.lk{cursor:pointer;background:var(--bg);box-shadow:inset 0 0 0 1.5px var(--line)}
+.tg.lk b,.tg.lk small{color:var(--mute)}
+#end.pw{touch-action:pan-y;background:var(--bg);backdrop-filter:none;-webkit-backdrop-filter:none;align-items:stretch;justify-content:stretch}
+#end.pw>div{width:100%;max-width:none;height:100%;max-height:none;border-radius:0;box-shadow:none;background:var(--bg);padding:calc(env(safe-area-inset-top,0px) + 12px) 20px calc(env(safe-area-inset-bottom,0px) + 12px);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+#end.pw button.go{width:100%;margin:8px 0 0;padding:11px 20px}
+.pw-crown{width:54px;height:54px;margin:0 auto 8px;border-radius:50%;background:var(--fluo);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 34px -10px rgba(var(--fgrgb),.75)}
+.pw-crown .crown{width:26px;height:26px;color:#111}
+#end .pw-h{font-size:26px;text-align:center;margin:0 0 2px}
+.pw-sub{font:500 11px ui-monospace,Menlo,monospace;color:var(--mute);text-align:center;margin:0 0 6px}
+.pw-stat{font:500 11px/1.4 ui-monospace,Menlo,monospace;color:var(--ink);text-align:center;margin:0 0 4px}
+.pw-list{list-style:none;padding:0;margin:6px 0 0;text-align:left}
+.pw-list li{display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line)}
+.pw-list li i{font-style:normal;font-size:13px;font-weight:800;width:40px;height:30px;border-radius:10px;background:var(--surf);display:flex;align-items:center;justify-content:center;flex:none;letter-spacing:-.02em}
+.pw-list li b{display:block;font-size:14px;font-weight:800;letter-spacing:-.02em}
+.pw-list li small{display:block;color:var(--mute);font-size:11.5px;line-height:1.3;margin-top:1px}
+.pw-price{background:var(--fluo);color:#111;border-radius:22px;padding:10px;text-align:center;margin:10px 0 2px}
+.pw-price b{display:block;font-size:30px;font-weight:800;letter-spacing:-.045em;line-height:1}
+.pw-price small{display:block;font:500 12px ui-monospace,Menlo,monospace;margin-top:6px;opacity:.75}
+.pwb{width:100%;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+.pwb .crown{color:#111;margin-right:0}
+.crown{display:inline-block;width:.95em;height:.95em;vertical-align:-.1em;margin-right:.3em;color:var(--ink);flex:none}
+.pbadge .crown,.unlk .crown{color:#111}
+.pbadge{font:800 11px "Manrope",system-ui,sans-serif;font-style:normal;background:var(--fluo);color:#111;border-radius:99px;padding:3px 9px;white-space:nowrap}
+.pf{display:grid;gap:10px;margin:12px 0 16px}
+.pf input,.pf select{font:inherit;font-size:16px;padding:12px 14px;border-radius:14px;border:0;background:var(--surf);color:var(--ink);box-shadow:var(--sh);width:100%;min-width:0}
+.pr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pi{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.pi .pe{font-size:22px}
+.pi .pt{flex:1;display:flex;flex-direction:column;min-width:0}
+.pi .pt b{font-size:16px;font-weight:800;overflow-wrap:anywhere}
+.pi .pt small{color:var(--mute);font:500 12px ui-monospace,Menlo,monospace}
+.pm{border:0;background:none;color:var(--mute);font-size:18px;width:36px;height:36px;cursor:pointer;flex:none}
+.pd{border:0;background:none;color:var(--ko);font-size:26px;width:36px;height:36px;cursor:pointer;flex:none}
 .how{margin-top:28px;text-align:left}
 .how h2{font-size:34px;font-weight:800;letter-spacing:-.04em;margin:0 0 10px;line-height:1.05}
 .how h3{font:500 12px ui-monospace,Menlo,monospace;color:var(--mute);margin:24px 0 8px;text-transform:uppercase;letter-spacing:.08em}
@@ -378,9 +412,12 @@ button:disabled:active{transform:none!important}
 #toast{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:50%;transform:translate(-50%,-160%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font:700 14px Manrope,system-ui,sans-serif;z-index:40;transition:transform .45s cubic-bezier(.2,1.2,.4,1);white-space:nowrap;box-shadow:var(--sh);pointer-events:none}
 #toast.on{transform:translate(-50%,0)}
 #end{z-index:40}
-.seg{display:flex;background:var(--surf);border-radius:99px;padding:4px;box-shadow:var(--sh);margin-top:12px}
-.seg button{flex:1;border:0;background:none;padding:10px 6px;border-radius:99px;font:700 14px Manrope,system-ui,sans-serif;color:var(--ink);cursor:pointer}
-.seg button.on{background:var(--fluo);color:#111}
+.seg{position:relative;display:flex;background:var(--surf);border-radius:99px;padding:4px;box-shadow:var(--sh);margin-top:12px}
+.seg button{position:relative;z-index:1;flex:1;border:0;background:none;padding:10px 6px;border-radius:99px;font:700 14px Manrope,system-ui,sans-serif;color:var(--ink);cursor:pointer;transition:color .3s}
+.seg button.on{color:#111}
+.seg .sl{position:absolute;top:4px;bottom:4px;left:4px;width:calc((100% - 8px)/3);border-radius:99px;background:var(--fluo);transition:transform .35s cubic-bezier(.2,1,.3,1)}
+.seg[data-i="1"] .sl{transform:translateX(100%)}
+.seg[data-i="2"] .sl{transform:translateX(200%)}
 .sw{width:56px;height:32px;border-radius:99px;border:0;background:var(--line);position:relative;cursor:pointer;flex:none;padding:0}
 .sw::after{content:"";position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.3);transition:left .2s}
 .sw.on{background:var(--fluo)}
@@ -409,7 +446,7 @@ button:disabled:active{transform:none!important}
 <div id="guess"><div id="gt"></div><div id="gv"></div><input type="range" id="gr" step="1"><div class="gb"><button class="go" id="gok">Valider</button><button class="go alt" id="gsk">Passer</button></div></div>
 <div id="home"><div class="bg"><i></i><i></i><i></i></div><div class="deco" id="dc"></div><div id="hm"></div></div>
 <div id="learn"><div id="lh"><b>Mode apprentissage</b><button class="go alt" id="lx" style="margin:0">Fermer</button></div><div id="ll"></div></div>
-<template id="abt"><h3 class="sec">À propos</h3><p class="note">Ce jeu est inspiré du jeu de société Timeline.</p><div class="sr"><span>Version</span><span class="sv">1.83</span></div><div class="sr"><span>Créateur</span><span class="sv">Lucas Courcy</span></div><button class="go alt" style="margin:18px 0 0;width:100%" onclick="resetPro()">Restaurer l’achat</button><div class="how">
+<template id="abt"><h3 class="sec">À propos</h3><p class="note">Ce jeu est inspiré du jeu de société Timeline.</p><div class="sr"><span>Version</span><span class="sv">1.97</span></div><div class="sr"><span>Créateur</span><span class="sv">Lucas Courcy</span></div><button class="go alt" style="margin:18px 0 0;width:100%" onclick="resetPro()">Restaurer l’achat</button><div class="how">
 <h2>Comment jouer ?</h2>
 <p>Placez chaque carte à la bonne place dans la frise, de la plus ancienne à la plus récente. Chaque carte affiche son intitulé, sa date reste cachée.</p>
 <h3>Le principe</h3>
@@ -437,8 +474,11 @@ button:disabled:active{transform:none!important}
 </ul>
 <h3>Thèmes</h3>
 <ul>
-<li>Mélange, les cinq catégories (Histoire, Pop culture, Technologie, Sciences, Sport) et XXᵉ siècle.</li>
-<li>Au hasard : un thème surprise.</li>
+<li><b>Mélange</b> : toutes les cartes, toutes catégories confondues.</li>
+<li><b>Histoire</b>, <b>Pop culture</b>, <b>Technologie</b>, <b>Sciences</b>, <b>Sport</b> : une catégorie chacune.</li>
+<li><b>XXᵉ siècle</b> : les cartes des années 1900 à 1999.</li>
+<li><b>Mes cartes</b> (premium) : uniquement vos cartes personnelles.</li>
+<li><b>Au hasard</b> : un thème surprise.</li>
 </ul>
 <h3>Options et menus</h3>
 <ul>
@@ -449,18 +489,19 @@ button:disabled:active{transform:none!important}
 <li>Collection : les badges se débloquent au fil des parties.</li>
 </ul>
 <h3>Parties gratuites</h3>
-<p>Vous disposez de 3 parties gratuites par jour. La version premium débloque les parties sans limite, 200 cartes supplémentaires, 6 thèmes colorés et le badge « Contributeur ».</p>
+<p>Vous disposez de 3 parties gratuites par jour. La version premium débloque les parties sans limite, 200 cartes supplémentaires, 6 thèmes colorés, l’ajout de dates personnelles pour un jeu unique et le badge « Contributeur ».</p>
 </div>
 </template>
 <div id="sets" class="ov"></div>
 <div id="scores" class="ov"></div>
+<div id="perso" class="ov"></div>
 <div id="coll" class="ov"><div class="sh"><span class="k">Collection</span><button class="go alt" onclick="$('coll').classList.remove('on')" style="margin:0">Fermer</button></div><h1 class="sttl">Badges</h1><p class="meta" id="cn"></p><div id="cl"></div></div>
 <div id="toast"></div>
 <div id="end"><div id="ec"></div></div>
 <script>
 
 const H="Histoire",P="Pop culture",T="Technologie",S="Sciences",Z="Sport";
-const COL={[H]:"#8a6d3b",[P]:"#a24a8a",[T]:"#3b7aa0",[S]:"#4a8a5a",[Z]:"#b0602f"};
+const COL={[H]:"#8a6d3b",[P]:"#a24a8a",[T]:"#3b7aa0",[S]:"#4a8a5a",[Z]:"#b0602f","Perso":"#5b6573"};
 const E=[["Fondation de Rome (légendaire)",-753,H],["Premiers Jeux olympiques antiques",-776,Z],["Construction de la pyramide de Khéops",-2560,H],["Assassinat de Jules César",-44,H],["Éruption du Vésuve sur Pompéi",79,H],["Couronnement de Charlemagne",800,H],["Bataille d’Hastings",1066,H],["Première croisade",1096,H],["Début de la peste noire en Europe",1347,H],["Imprimerie de Gutenberg",1450,T],["Prise de Constantinople",1453,H],["Colomb atteint l’Amérique",1492,H],["Mort de Louis XIV",1715,H],["Prise de la Bastille",1789,H],["Sacre de Napoléon",1804,H],["Bataille de Waterloo",1815,H],["Abolition de l’esclavage en France",1848,H],["Invention du téléphone",1876,T],["Inauguration de la tour Eiffel",1889,H],["Premiers Jeux olympiques modernes",1896,Z],["Premier vol des frères Wright",1903,T],["Naufrage du Titanic",1912,H],["Début de la Première Guerre mondiale",1914,H],["Découverte de la pénicilline",1928,S],["Sortie de Blanche-Neige (Disney)",1937,P],["Débarquement de Normandie",1944,H],["Structure de l’ADN décrite",1953,S],["Satellite Spoutnik 1",1957,T],["Premier pas sur la Lune",1969,S],["Concert de Woodstock",1969,P],["Sortie de Star Wars",1977,P],["Premier Tour de France",1903,Z],["Sortie de la Game Boy",1989,T],["Chute du mur de Berlin",1989,H],["Naissance du World Wide Web",1991,T],["France championne du monde de football",1998,Z],["Premier tome de Harry Potter",1997,P],["Euro en circulation",2002,H],["Lancement de YouTube",2005,T],["Lancement du premier iPhone",2007,T]];
 const $=id=>document.getElementById(id);
 const AN=["Selon la légende, Romulus aurait tracé les limites de la ville avant de tuer son frère Rémus.","Pendant ces Jeux, une trêve sacrée suspendait les guerres entre cités grecques.","Elle est restée le plus haut monument du monde pendant près de 4 000 ans.","César a été poignardé 23 fois, aux ides de mars, en plein Sénat.","Les cendres ont conservé les corps et les objets de Pompéi pendant des siècles.","Selon son biographe Éginhard, Charlemagne aurait été surpris par ce couronnement.","Cette bataille est racontée en images sur la tapisserie de Bayeux.","Elle est partie d’un appel du pape Urbain II à Clermont.","Elle aurait tué près d’un tiers de la population européenne.","Sa Bible, imprimée avec des caractères mobiles, fait partie des premiers grands livres imprimés en Europe.","Les Ottomans ont utilisé d’énormes canons pour briser les murailles.","Colomb pensait avoir atteint les Indes, et non un nouveau continent.","Il a régné 72 ans, le plus long règne de l’histoire de France.","Il ne restait que sept prisonniers dans la forteresse.","Napoléon a pris la couronne des mains du pape pour se la poser lui-même.","La bataille a duré une journée et a mis fin à l’Empire de Napoléon.","Victor Schœlcher a joué un rôle clé dans ce décret.","Bell a déposé son brevet quelques heures avant un concurrent.","Elle devait être démontée au bout de vingt ans.","Ils se sont tenus à Athènes, sous l’impulsion de Pierre de Coubertin.","Le premier vol n’a duré que 12 secondes.","Il n’y avait des canots que pour environ la moitié des passagers.","On pensait alors que la guerre serait finie avant Noël.","Fleming l’a découverte grâce à une boîte de culture oubliée pendant ses vacances.","C’est le premier long métrage d’animation en couleur de l’histoire.","Plus de 150 000 soldats alliés ont débarqué dès le premier jour.","Rosalind Franklin a réalisé la célèbre photo 51, essentielle à cette découverte.","Son simple bip radio a surpris le monde entier.","Armstrong a posé le pied sur la Lune environ six heures après l’alunissage.","Environ 400 000 personnes sont venues, bien plus que prévu.","Le film a failli ne jamais sortir tant le studio doutait de son succès.","Le premier vainqueur, Maurice Garin, a parcouru plus de 2 400 km.","Elle était livrée avec le jeu Tetris.","Une conférence de presse mal comprise a précipité l’ouverture des postes frontières.","Il a été inventé au CERN pour partager des documents entre chercheurs.","Les Bleus ont battu le Brésil 3-0 en finale.","Le manuscrit a été refusé par une douzaine d’éditeurs.","Douze pays l’ont adopté en billets et en pièces.","La première vidéo montre un visiteur au zoo de San Diego.","Steve Jobs l’a présenté comme trois produits en un."];
@@ -690,9 +731,9 @@ const IMG={"Prise de la Bastille": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAA
 const fy=y=>y<0?Math.abs(y)+" av. J.-C.":String(y);
 const chip=c=>'<span class="cat" style="--c:'+COL[c]+'"><i></i>'+c+'</span>';
 let deck,line,cur,busy,pend,pl,pi,mode,PK=0;
-function ov(h){$("ec").innerHTML=h;$("end").classList.remove("fin");$("end").classList.add("on")}
+function ov(h){$("ec").innerHTML=h;$("end").classList.remove("fin","pw");$("end").classList.add("on")}
 function ok(e){return !e[5]||!!pro().u}
-const PKS=[{n:"Mélange",f:(a)=>E.filter(e=>a||ok(e))},...["Histoire","Pop culture","Technologie","Sciences","Sport"].map(c=>({n:c,f:(a)=>E.filter(e=>e[2]===c&&(a||ok(e)))})),{n:"XXᵉ siècle",f:(a)=>E.filter(e=>e[1]>=1900&&e[1]<2000&&(a||ok(e)))}];
+const PKS=[{n:"Mélange",f:(a)=>E.filter(e=>a||ok(e))},...["Histoire","Pop culture","Technologie","Sciences","Sport"].map(c=>({n:c,f:(a)=>E.filter(e=>e[2]===c&&(a||ok(e)))})),{n:"XXᵉ siècle",f:(a)=>E.filter(e=>e[1]>=1900&&e[1]<2000&&(a||ok(e)))},{n:"Mes cartes",perso:1,f:()=>persoCards()}];
 let AC=null,SND=true;try{SND=localStorage.getItem("snd")!=="0"}catch(_){}
 function ac(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(_){}}if(AC&&AC.state==="suspended")AC.resume();return AC}
 function tone(fr,t,d,ty,v){const a=ac();if(!a||!SND)return;const o=a.createOscillator(),g=a.createGain(),s=a.currentTime+t;o.type=ty||"sine";o.frequency.setValueAtTime(fr,s);g.gain.setValueAtTime(.0001,s);g.gain.exponentialRampToValueAtTime(v||.15,s+.01);g.gain.exponentialRampToValueAtTime(.0001,s+d);o.connect(g);g.connect(a.destination);o.start(s);o.stop(s+d+.05)}
@@ -704,12 +745,12 @@ const SFX={pick(){tone(520,0,.06,"triangle",.08);vib(8)},drop(){tone(140,0,.12,"
  end(w){(w?[523,659,784,1047]:[392,330,262]).forEach((fr,i)=>tone(fr,i*.15,.35,"triangle",.14))}};
 const ERAS=[["Antiquité","#a89f8d","rgba(168,159,141,.15)"],["Moyen Âge","#d2b46a","rgba(210,180,106,.15)"],["Temps modernes","#b5707a","rgba(181,112,122,.15)"],["XIXᵉ siècle","#9a8466","rgba(154,132,102,.15)"],["Contemporaine","#6fa6d6","rgba(111,166,214,.15)"]];
 const era=y=>ERAS[y<500?0:y<1500?1:y<1800?2:y<1945?3:4];
-const SEL={m:1,p:0,g:false,t:false};let GUESS=true,LIVE=false;
+const SEL={m:1,p:0,g:false,t:false,pc:false};let GUESS=true,LIVE=false;
 const EG={};
 function eg(e){if(!e)return"";if(!EG[e]){try{const c=document.createElement("canvas");c.width=c.height=72;const x=c.getContext("2d");x.font="56px -apple-system,'Apple Color Emoji','Segoe UI Emoji',sans-serif";x.textAlign="center";x.textBaseline="middle";x.fillText(e,36,40);
  const d=x.getImageData(0,0,72,72),p=d.data;for(let i=0;i<p.length;i+=4){const g=Math.min(255,Math.max(0,(p[i]*.3+p[i+1]*.59+p[i+2]*.11-128)*1.25+128));p[i]=p[i+1]=p[i+2]=g}
  x.putImageData(d,0,0);EG[e]='<img class="eimg" alt="" src="'+c.toDataURL()+'">'}catch(_){EG[e]=e}}return EG[e]}
-const PIC=["🌍","📜","🎬","💡","🔬","🏅","🕰️"].map(eg);
+const PIC=["🌍","📜","🎬","💡","🔬","🏅","🕰️","📌"].map(eg);
 function tile(k,v,on,ic,t,s,c){return '<button class="tile'+(on?' on':'')+'" data-k="'+k+'" data-v="'+v+'" style="--c:'+(c||"transparent")+'"><span class="ti">'+ic+'</span><b>'+t+'</b><small>'+s+'</small></button>'}
 function menu(){home()}
 const PAL=[
@@ -729,11 +770,36 @@ function setSound(v){SND=v;try{localStorage.setItem("snd",v?"1":"0")}catch(_){}$
 function settings(){const u=!!pro().u,th=themePref(),ai=accIdx(),seg=[["light","Clair"],["dark","Sombre"],["auto","Auto"]];
  $("sets").innerHTML='<div class="sh"><span class="k">Paramètres</span><button class="go alt" onclick="$(\'sets\').classList.remove(\'on\')" style="margin:0">Fermer</button></div>'
  +'<h1 class="sttl">Réglages</h1>'
- +'<div class="sr"><span>Son en jeu</span><button class="sw'+(SND?' on':'')+'" aria-label="Son en jeu" onclick="setSound(!SND);settings()"></button></div>'
- +'<div class="sr sc"><span>Thème</span><div class="seg">'+seg.map(([v,l])=>'<button class="'+(th===v?'on':'')+'" onclick="setTheme(\''+v+'\');settings()">'+l+'</button>').join("")+'</div></div>'
- +'<div class="sr sc"><span>Couleur d’accentuation'+(u?'':' <small>premium</small>')+'</span><div class="sws">'+PAL.map((c,i)=>'<button class="'+(ai===i?'on':'')+(!u&&i>0?' lk':'')+'" style="--c:'+c.b+'" aria-label="'+c.n+'" onclick="pickAcc('+i+')"></button>').join("")+'</div></div>';
- $("sets").appendChild(document.getElementById("abt").content.cloneNode(true));$("sets").classList.add("on")}
+ +'<div class="sr"><span>Son en jeu</span><button class="sw'+(SND?' on':'')+'" aria-label="Son en jeu" onclick="setSound(!SND);this.classList.toggle(\'on\',SND)"></button></div>'
+ +'<div class="sr sc"><span>Thème</span><div class="seg" data-i="'+seg.findIndex(([v])=>v===th)+'"><i class="sl"></i>'+seg.map(([v,l])=>'<button class="'+(th===v?'on':'')+'" onclick="setTheme(\''+v+'\');segSet(this)">'+l+'</button>').join("")+'</div></div>'
+ +'<div class="sr sc'+(u?'':' lk')+'"><span>'+CROWN+'Couleur d’accentuation'+(u?'':' <small>premium</small>')+'</span><div class="sws">'+PAL.map((c,i)=>'<button class="'+(ai===i?'on':'')+(!u&&i>0?' lk':'')+'" style="--c:'+c.b+'" aria-label="'+c.n+'" onclick="pickAcc('+i+')"></button>').join("")+'</div></div>';
+ $("sets").insertAdjacentHTML("beforeend",'<div class="sr'+(u?'':' lk')+'" onclick="'+(u?'persoOpen()':'paywall(settings)')+'"><span>'+CROWN+'Mes cartes personnelles'+(u?'':' <small>premium</small>')+'</span>'+(u?'<small>'+persoCards().length+' carte(s)</small>':'')+'</div>');$("sets").appendChild(document.getElementById("abt").content.cloneNode(true));$("sets").classList.add("on")}
+const CROWN='<svg class="crown" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 8.5 6.5 12 12 4.5 17.5 12l4-3.5-2 11.5h-15z" fill="currentColor"/></svg>';
+document.addEventListener("gesturestart",e=>{if($("end").classList.contains("pw"))e.preventDefault()},{passive:false});
+document.addEventListener("gesturechange",e=>{if($("end").classList.contains("pw"))e.preventDefault()},{passive:false});
+document.addEventListener("touchmove",e=>{if(e.touches.length>1&&$("end").classList.contains("pw"))e.preventDefault()},{passive:false});
+function segSet(b){const s=b.parentNode,bs=[...s.querySelectorAll("button")];bs.forEach(x=>x.classList.toggle("on",x===b));s.dataset.i=bs.indexOf(b)}
 const SCK="frise_scores";
+const PRK="frise_perso";
+function persoList(){try{return JSON.parse(localStorage.getItem(PRK))||[]}catch(_){return []}}
+function persoSave(a){try{localStorage.setItem(PRK,JSON.stringify(a))}catch(_){}}
+function persoCards(){return persoList().map(c=>[c[0],c[1],"Perso","Carte personnelle","📌"])}
+function escH(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function persoOpen(){if(!pro().u){paywall(persoOpen);return}PEDIT=null;renderPerso()}
+let PEDIT=null;
+function renderPerso(){const a=persoList(),ed=PEDIT!==null?a[PEDIT]:null;
+ $("perso").innerHTML='<div class="sh"><span class="k">Cartes perso</span><button class="go alt" onclick="$(\'perso\').classList.remove(\'on\')" style="margin:0">Fermer</button></div><h1 class="sttl">Mes dates</h1>'
+ +'<div class="pf"><input id="pt" maxlength="60" placeholder="Nom de l’événement" value="'+(ed?escH(ed[0]):"")+'"><div class="pr"><input id="py" type="number" min="1" max="2100" placeholder="Année" value="'+(ed?Math.abs(ed[1]):"")+'"><select id="pe"><option value="1"'+(ed&&ed[1]>=0?' selected':'')+'>ap. J.-C.</option><option value="-1"'+(ed&&ed[1]<0?' selected':'')+'>av. J.-C.</option></select></div><button class="go" onclick="persoAdd()">'+(ed?'Enregistrer les modifications':'Ajouter la carte')+'</button>'+(ed?'<button class="go alt" onclick="persoCancel()">Annuler</button>':'')+'</div>'
+ +'<p class="meta">'+a.length+' carte'+(a.length>1?'s':'')+' · catégorie Perso</p>'
+ +(a.length?a.map((c,i)=>'<div class="pi"><span class="pe">📌</span><span class="pt"><b>'+escH(c[0])+'</b><small>'+fy(c[1])+'</small></span><button class="pm" onclick="persoEdit('+i+')" aria-label="Modifier">✎</button><button class="pd" onclick="persoDel('+i+')" aria-label="Supprimer">×</button></div>').join(""):'<p class="note">Aucune carte pour le moment.</p>');
+ $("perso").classList.add("on")}
+function persoAdd(){const t=$("pt").value.trim(),y=parseInt($("py").value,10),s=+$("pe").value;
+ if(!t){say("Donnez un nom à l’événement");return}
+ if(!(y>=1&&y<=2100)){say("Indiquez une année entre 1 et 2100");return}
+ const a=persoList();if(PEDIT!==null){a[PEDIT]=[t,s*y];PEDIT=null;persoSave(a);renderPerso();say("Carte modifiée");return}a.push([t,s*y]);persoSave(a);renderPerso();say("Carte ajoutée")}
+function persoDel(i){const a=persoList();a.splice(i,1);persoSave(a);PEDIT=null;renderPerso()}
+function persoEdit(i){PEDIT=i;renderPerso();$("perso").scrollTop=0}
+function persoCancel(){PEDIT=null;renderPerso()}
 function saveScore(){try{const a=JSON.parse(localStorage.getItem(SCK))||[];a.push({t:Date.now(),m:mode,th:PKS[PK].n,p:pl.map(q=>({s:q.score,ok:q.ok,tot:q.tot}))});a.sort((x,y)=>Math.max(...y.p.map(q=>q.s))-Math.max(...x.p.map(q=>q.s)));localStorage.setItem(SCK,JSON.stringify(a.slice(0,50)))}catch(_){}}
 function scores(){let a=[];try{a=JSON.parse(localStorage.getItem(SCK))||[]}catch(_){}
  const rows=a.map((g,i)=>{const d=new Date(g.t).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"numeric"});
@@ -790,7 +856,7 @@ function capText(){const L=playsLeft();return L>0?'encore <b>'+L+'</b> partie'+(
 function home(){
  $("end").classList.remove("on");$("home").classList.add("on");$("home").dataset.s=1;
  $("hm").innerHTML='<div class="brand">'+LOGO+'<h1><span>Frise</span></h1><p class="sub">Le jeu des dates. Placez chaque carte dans l’ordre chronologique.</p></div>'
- +'<div class="mid">'+(pro().u?'':'<p class="capt">'+capText()+'</p><button class="go unlk" style="background:var(--fluo);color:#111;margin:0" onclick="paywall(null)">Débloquer la version premium</button>')+'</div><div class="acts"><button class="go play" style="margin:0" onclick="setup()">Jouer</button>'
+ +'<div class="mid">'+(pro().u?'':'<p class="capt">'+capText()+'</p><button class="go unlk" style="background:var(--fluo);color:#111;margin:0" onclick="paywall(null)">'+CROWN+'Débloquer la version premium</button>')+'</div><div class="acts"><button class="go play" style="margin:0" onclick="setup()">Jouer</button>'
  +(LIVE?'<button class="go alt" style="margin:0;width:100%" onclick="resume()">Reprendre la partie</button>':'')
  +'<button class="go alt" style="margin:0;width:100%" onclick="collection()">Collection</button>'
  +'<div class="duo"><button class="go alt" style="margin:0" onclick="settings()">Paramètres</button><button class="go alt" style="margin:0" onclick="scores()">Scores</button></div></div>'}
@@ -798,9 +864,10 @@ function setup(){
  $("home").dataset.s=2;
  $("hm").innerHTML='<button class="back" onclick="home()">← Retour</button><h2 class="ttl">Nouvelle partie</h2>'
  +'<h3>Mode</h3><div class="row">'+tile("m",1,SEL.m===1,IC1,"Solo","3 vies, les séries font grimper le score")+tile("m",2,SEL.m===2,IC2,"Duel","Chacun son tour sur la même frise")+'</div>'
- +'<h3>Thème</h3><div class="grid">'+PKS.map((p,k)=>tile("p",k,SEL.p===k,PIC[k],p.n,p.f().length+" cartes"+(pro().u?"":" · +"+(p.f(1).length-p.f().length)+" premium"),COL[p.n])).join("")+tile("p",-1,SEL.p<0,eg("🎲"),"Au hasard","Un thème surprise")+'</div>'
+ +'<h3>Thème</h3><div class="grid">'+PKS.map((p,k)=>tile("p",k,SEL.p===k,PIC[k],p.n,(p.perso?p.f().length+" cartes"+(pro().u?"":" · Version Premium"):p.f().length+" cartes"+(pro().u?"":" · +"+(p.f(1).length-p.f().length)+" premium")),COL[p.n])).join("")+tile("p",-1,SEL.p<0,eg("🎲"),"Au hasard","Un thème surprise")+'</div>'
  +'<label class="tg"><span><b>Bonus de précision</b><small>Deviner l’année exacte à chaque carte</small></span><input type="checkbox"'+(SEL.g?' checked':'')+' onchange="SEL.g=this.checked"></label>'
  +'<label class="tg"><span><b>Chronomètre</b><small>15 secondes par carte, bonus de rapidité</small></span><input type="checkbox"'+(SEL.t?' checked':'')+' onchange="SEL.t=this.checked"></label>'
+ +(pro().u?'<label class="tg"><span><b>'+CROWN+'Cartes personnelles</b><small>Ajouter vos propres dates à cette partie</small></span><input type="checkbox"'+(SEL.pc?' checked':'')+' onchange="SEL.pc=this.checked"></label>':'<div class="tg lk" onclick="paywall(setup)"><span><b>'+CROWN+'Cartes personnelles</b><small>Ajoutez vos propres dates</small></span><em class="pbadge">Version Premium</em></div>')
  +'<button class="go play" onclick="start(SEL.m,SEL.p)">Lancer la partie</button>'}
 function packs(n){ov('<h2>Choisir un paquet</h2>'+PKS.map((p,k)=>'<button class="go alt" onclick="start('+n+','+k+')">'+p.n+'</button>').join("")+'<br><button class="go" onclick="start('+n+',-1)">Au hasard</button>')}
 function learn(){
@@ -818,13 +885,22 @@ function today(){return new Date().toLocaleDateString("fr-CA")}
 function playsLeft(){const p=pro();if(p.u)return Infinity;return Math.max(0,3-(p.day===today()?(p.n||0):0))}
 function countPlay(){const p=pro();if(p.day!==today()){p.day=today();p.n=0}p.n=(p.n||0)+1;proSave(p)}
 function say(t){const x=$("toast");x.textContent=t;x.classList.add("on");clearTimeout(TT);TT=setTimeout(()=>x.classList.remove("on"),2400)}
-function paywall(cb){PAYCB=cb;ov('<h2>Débloquez la version premium</h2><ul class="bl"><li>Jouer sans limite de parties</li><li>200 nouvelles dates</li><li>6 thèmes colorés</li><li>Badge exclusif « Contributeur »</li></ul>'+(playsLeft()===0?'<p class="v">Vos 3 parties gratuites d’aujourd’hui sont épuisées.</p>':'')+'<button class="go" onclick="buy()">Débloquer · 1,99 €</button><button class="go alt" onclick="restore()">Restaurer les achats</button><p class="v">Achat simulé pour les tests</p><button class="go alt" onclick="later()">Plus tard</button>')}
+function paywall(cb){PAYCB=cb;
+ const st=stats(),placed=st.placed||0,best=(()=>{try{const a=JSON.parse(localStorage.getItem(SCK))||[];return a.length?Math.max(...a.map(g=>Math.max(...g.p.map(q=>q.s)))):0}catch(_){return 0}})(),L=playsLeft();
+ const perks=[["∞","Parties illimitées","Jouez autant que vous voulez, solo ou en duel."],["+200","Cartes supplémentaires","De nouvelles dates dans les cinq catégories."],["🎨","6 thèmes et couleurs d’accentuation","Personnalisez la frise avec les palettes fluo."],["🗓️","Vos propres dates","Vos événements et années, pour un jeu unique."],["⭐","Badge « Contributeur »","Affichez votre soutien dans la collection."]];
+ ov('<div class="pw-crown">'+CROWN+'</div><h2 class="pw-h">Frise Premium</h2><p class="pw-sub">Un achat unique · à peine le prix d’un café</p>'
+ +'<p class="pw-stat">'+(placed?'Vous avez déjà placé '+placed+' cartes'+(best?' · meilleur score '+best:'')+'. La suite vous attend.':'Des heures de jeu vous attendent, seul ou à plusieurs.')+(L===0?'<br>Vos 3 parties gratuites d’aujourd’hui sont épuisées.':'')+'</p>'
+ +'<ul class="pw-list">'+perks.map(([i,t,d])=>'<li><i>'+i+'</i><span><b>'+t+'</b><small>'+d+'</small></span></li>').join("")+'</ul>'
+ +'<div class="pw-price"><b>1,99 €</b><small>paiement unique, sans abonnement</small></div>'
+ +'<button class="go play pwb" onclick="buy()">'+CROWN+'Débloquer Premium</button>'
+ +'<button class="go alt" onclick="restore()">Restaurer un achat</button><p class="v">Achat simulé pour les tests</p><button class="go alt" onclick="later()">Plus tard</button>');
+ $("end").classList.add("pw")}
 function later(){PAYCB=null;$("end").classList.remove("on")}
-function buy(){const p=pro();p.u=true;proSave(p);$("end").classList.remove("on");say("Merci ! Version premium débloquée");const f=PAYCB;PAYCB=null;if(f)f();else home()}
+function buy(){const p=pro();p.u=true;proSave(p);$("end").classList.remove("on","pw");say("Merci ! Version premium débloquée");if($("sets").classList.contains("on"))settings();const f=PAYCB;PAYCB=null;if(f)f();else if(!$("sets").classList.contains("on"))home()}
 function resetPro(){proSave({});home();say("Achat réinitialisé, compteur remis à zéro")}
 function restore(){say(pro().u?"Achat restauré":"Aucun achat à restaurer")}
 function start(n,pk){if(playsLeft()>0){if(LIVE)countPlay();startGame(n,pk)}else paywall(()=>startGame(n,pk))}
-function startGame(n,pk){$("home").classList.remove("on");LIVE=true;GUESS=SEL.g;TIMER=SEL.t;mode=n;if(pk<0)pk=1+Math.floor(Math.random()*5);PK=pk||0;ac();E.forEach(e=>{e.o=e.r=undefined});deck=[...PKS[PK].f()].sort(()=>Math.random()-.5);line=[];pl=[];
+function startGame(n,pk){$("home").classList.remove("on");LIVE=true;GUESS=SEL.g;TIMER=SEL.t;mode=n;if(pk<0)pk=1+Math.floor(Math.random()*5);PK=pk||0;ac();E.forEach(e=>{e.o=e.r=undefined});deck=[...PKS[PK].f(),...(SEL.pc&&pro().u&&!PKS[PK].perso?persoCards():[])].sort(()=>Math.random()-.5);line=[];pl=[];
  for(let k=0;k<n;k++)pl.push({n:n>1?"J"+(k+1):"Solo",lives:3,joker:1,streak:0,score:0,best:0,ok:0,tot:0});
  pi=0;pend=null;$("end").classList.remove("on");note("Paquet : "+PKS[PK].n+" ("+deck.length+" cartes)");draw()}
 function head(){
@@ -960,12 +1036,12 @@ $("joker").onclick=()=>{
 $("snd").classList.toggle("off",!SND);
 $("snd").onclick=()=>{SND=!SND;try{localStorage.setItem("snd",SND?"1":"0")}catch(_){}$("snd").classList.toggle("off",!SND);if(SND){ac();SFX.pick()}};
 $("lx").onclick=()=>{$("learn").classList.remove("on");$("end").classList.add("on")};
-$("hm").onclick=e=>{const b=e.target.closest("[data-k]");if(!b)return;SEL[b.dataset.k]=+b.dataset.v;setup()};
+$("hm").onclick=e=>{const b=e.target.closest("[data-k]");if(!b)return;if(b.dataset.k==="p"&&PKS[+b.dataset.v]&&PKS[+b.dataset.v].perso){if(!pro().u){paywall(setup);return}if(!persoCards().length){say("Ajoutez d’abord vos cartes dans Paramètres");return}}SEL[b.dataset.k]=+b.dataset.v;setup()};
 const dh=E.filter(e=>e[4]&&ok(e)).filter((e,i)=>i%7===0).sort((a,b)=>a[1]-b[1]).map(e=>'<i><span>'+eg(e[4])+'</span><b>'+fy(e[1])+'</b></i>').join("");$("dc").innerHTML='<div class="dr">'+dh+dh+'</div>';
 (function(){const H=$("home");if(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches)return;let tx=0,ty=0,cx=0,cy=0,last=-1e9;
- const mv=e=>{tx=(e.clientX/innerWidth-.5)*2;ty=(e.clientY/innerHeight-.5)*2;last=performance.now()};
+ const mv=e=>{tx=Math.max(-1.6,Math.min(1.6,(e.clientX/innerWidth-.5)*3.2));ty=Math.max(-1.6,Math.min(1.6,(e.clientY/innerHeight-.5)*3.2));last=performance.now()};
  H.addEventListener("pointermove",mv,{passive:true});H.addEventListener("pointerdown",mv,{passive:true});
- const f=t=>{if(H.classList.contains("on")){if(t-last>2500){tx=Math.sin(t/3800)*.7;ty=Math.cos(t/5200)*.5}cx+=(tx-cx)*.06;cy+=(ty-cy)*.06;H.style.setProperty("--px",cx.toFixed(3));H.style.setProperty("--py",cy.toFixed(3))}requestAnimationFrame(f)};requestAnimationFrame(f)})();
+ let px0=1e9,py0=1e9;const f=t=>{if(H.classList.contains("on")){if(t-last>2500){tx=Math.sin(t/3800)*.7;ty=Math.cos(t/5200)*.5}cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;if(Math.abs(cx-px0)>.001||Math.abs(cy-py0)>.001){px0=cx;py0=cy;H.style.setProperty("--px",cx.toFixed(3));H.style.setProperty("--py",cy.toFixed(3))}}requestAnimationFrame(f)};requestAnimationFrame(f)})();
 $("pz").onclick=pause;
 window.addEventListener("scroll",()=>{if(scrollX||scrollY)scrollTo(0,0)});[document.documentElement,document.body].forEach(e=>e.addEventListener("scroll",()=>{if(e.scrollLeft)e.scrollLeft=0}));
 $("strip").addEventListener("scroll",mmv);
