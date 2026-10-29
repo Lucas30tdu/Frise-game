@@ -317,7 +317,7 @@ button:disabled:active{transform:none!important}
 @media (max-height:720px){#card small{display:none}}
 @media (max-height:600px){#end>div{padding:14px 18px}#end h2{font-size:30px}.rc .big{font-size:38px}.rc{padding:12px}.st div{font-size:11px}}
 @media (max-height:520px){#an{display:none}:root{--stg:150px}header{padding:6px 16px 2px}.pl .sc{font-size:26px;margin:0 0 2px}#msg{display:none}#mm{margin-top:4px}#stage,#stage.compact{margin-top:4px}}
-.bg{position:fixed;inset:0;overflow:hidden;z-index:-1;pointer-events:none}
+.bg{position:sticky;top:0;height:100vh;margin:0 -18px -100vh;overflow:hidden;z-index:-1;pointer-events:none}
 .bg i{position:absolute;border-radius:50%;background:radial-gradient(closest-side,var(--c,var(--fb)) 0%,transparent 100%);opacity:.38;will-change:transform;translate:calc(var(--px,0)*var(--d)*1px) calc(var(--py,0)*var(--d)*1px)}
 .bg i:nth-child(1){width:72vmin;height:72vmin;left:-20vmin;top:10vh;--d:46;animation:b1 17s ease-in-out infinite alternate}
 .bg i:nth-child(2){width:58vmin;height:58vmin;right:-16vmin;top:34vh;--d:-68;--c:var(--fm);opacity:.32;animation:b2 21s ease-in-out infinite alternate}
