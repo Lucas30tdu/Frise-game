@@ -378,7 +378,7 @@ button:disabled:active{transform:none!important}
 <div id="guess"><div id="gt"></div><div id="gv"></div><input type="range" id="gr" step="1"><div class="gb"><button class="go" id="gok">Valider</button><button class="go alt" id="gsk">Passer</button></div></div>
 <div id="home"><div class="bg"><i></i><i></i><i></i></div><div class="deco" id="dc"></div><div id="hm"></div></div>
 <div id="learn"><div id="lh"><b>Mode apprentissage</b><button class="go alt" id="lx" style="margin:0">Fermer</button></div><div id="ll"></div></div>
-<div id="about"><div style="display:flex;justify-content:flex-end"><button class="go alt" onclick="$('about').classList.remove('on')" style="margin:0">Fermer</button></div><div class="ab"><span class="k">À propos</span><h1>Frise</h1><p>Ce jeu est inspiré du jeu de société Timeline.</p><span class="k">Version</span><p class="v">1.60</p><span class="k">Créateur</span><p class="v">Lucas Courcy</p></div></div>
+<div id="about"><div style="display:flex;justify-content:flex-end"><button class="go alt" onclick="$('about').classList.remove('on')" style="margin:0">Fermer</button></div><div class="ab"><span class="k">À propos</span><h1>Frise</h1><p>Ce jeu est inspiré du jeu de société Timeline.</p><span class="k">Version</span><p class="v">1.61</p><span class="k">Créateur</span><p class="v">Lucas Courcy</p></div></div>
 <div id="coll"><div style="display:flex;justify-content:space-between;align-items:center"><span class="k">Collection</span><button class="go alt" onclick="$('coll').classList.remove('on')" style="margin:0">Fermer</button></div><div class="cn"><h1>Badges</h1><p class="v" id="cn"></p></div><div id="cl"></div></div>
 <div id="toast"></div>
 <div id="end"><div id="ec"></div></div>
@@ -446,11 +446,16 @@ const BADGES=[
 {id:"s10",e:"💎",t:"Infaillible",d:"Série de 10 sans faute",f:s=>s.best>=10},
 {id:"x1",e:"🎯",t:"Dans le mille",d:"1 date exacte",f:s=>s.exact>=1},
 {id:"x10",e:"🔭",t:"Précis",d:"10 dates exactes",f:s=>s.exact>=10},
-{id:"x50",e:"🏆",t:"Horloger",d:"50 dates exactes",f:s=>s.exact>=50}];
+{id:"x50",e:"🏆",t:"Horloger",d:"50 dates exactes",f:s=>s.exact>=50},
+{id:"cH",e:"📜",t:"Historien",d:"20 cartes Histoire placées",f:s=>((s.cat||{})[H]||0)>=20},
+{id:"cP",e:"🎬",t:"Pop star",d:"20 cartes Pop culture placées",f:s=>((s.cat||{})[P]||0)>=20},
+{id:"cT",e:"💻",t:"Geek",d:"20 cartes Technologie placées",f:s=>((s.cat||{})[T]||0)>=20},
+{id:"cS",e:"🔬",t:"Savant",d:"20 cartes Sciences placées",f:s=>((s.cat||{})[S]||0)>=20},
+{id:"cZ",e:"🏅",t:"Sportif",d:"20 cartes Sport placées",f:s=>((s.cat||{})[Z]||0)>=20}];
 const STK="frise_stats";let TT=0;
 function stats(){try{return JSON.parse(localStorage.getItem(STK))||{}}catch(_){return {}}}
 function saveStats(s){try{localStorage.setItem(STK,JSON.stringify(s))}catch(_){}}
-function track(g,y,streak){const s=stats(),before=BADGES.map(b=>b.f(s));s.placed=(s.placed||0)+1;if(g!==null&&g===y)s.exact=(s.exact||0)+1;s.best=Math.max(s.best||0,streak);saveStats(s);return BADGES.filter((b,k)=>!before[k]&&b.f(s))}
+function track(g,y,streak,cat){const s=stats(),before=BADGES.map(b=>b.f(s));s.placed=(s.placed||0)+1;s.cat=s.cat||{};s.cat[cat]=(s.cat[cat]||0)+1;if(g!==null&&g===y)s.exact=(s.exact||0)+1;s.best=Math.max(s.best||0,streak);saveStats(s);return BADGES.filter((b,k)=>!before[k]&&b.f(s))}
 function toast(b){const t=$("toast");t.textContent=b.e+"  Badge débloqué : "+b.t;t.classList.add("on");clearTimeout(TT);TT=setTimeout(()=>t.classList.remove("on"),2400)}
 function collection(){const s=stats(),n=BADGES.filter(b=>b.f(s)).length;$("cn").textContent=n+" / "+BADGES.length+" obtenus";
  $("cl").innerHTML=BADGES.map(b=>{const ok=b.f(s);return '<div class="bd'+(ok?' on':'')+'"><span class="be">'+b.e+'</span><span class="bt"><b>'+b.t+'</b><small>'+b.d+'</small></span><span class="bc">'+(ok?'✓':'')+'</span></div>'}).join("");
@@ -561,7 +566,7 @@ function resolve(ok,g,W,sc){
  const p=pl[pi],y=cur[1],el=pend.el;
  $("an").textContent="";
  if(ok){
-  p.streak++;p.ok++;p.tot++;p.best=Math.max(p.best,p.streak);cur.r="ok";const nb=track(g,y,p.streak);const m=Math.min(p.streak,5);let b=0;
+  p.streak++;p.ok++;p.tot++;p.best=Math.max(p.best,p.streak);cur.r="ok";const nb=track(g,y,p.streak,cur[2]);const m=Math.min(p.streak,5);let b=0;
   if(g!==null){const e=Math.abs(g-y);b=e===0?5:e<=W/20?3:e<=W/8?1:0;if(b)b=Math.max(1,Math.round(b*sc))}
   const sp=cur.sp||0,gain=10*m+b+sp;p.score+=gain;
   let t="Bien placé ! +"+gain+(m>1?" (série ×"+m+")":"")+(b?" dont précision +"+b:"")+(sp?" · rapidité +"+sp:"");
