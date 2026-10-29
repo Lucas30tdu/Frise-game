@@ -1073,7 +1073,7 @@ applyTheme();applyAccent();menu();
    tm=setTimeout(()=>{el.classList.remove("on","out");obs.takeRecords();state="closed";tm=0},250)}});
  obs.observe(el,{attributes:true,attributeFilter:["class"]})});
  const hm=document.getElementById("hm");
- if(hm)new MutationObserver(()=>scrIn(hm)).observe(hm,{childList:true});
+ let lastS=null;if(hm)new MutationObserver(()=>{const s=document.getElementById("home").dataset.s;if(s!==lastS){lastS=s;scrIn(hm)}}).observe(hm,{childList:true});
 })();
 </script>
 <script>
