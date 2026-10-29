@@ -284,6 +284,10 @@ html,body{position:fixed;inset:0;width:100%;max-width:100%;overflow:hidden;overs
 #end.fin.on .rc.win .big{animation:ebig 1s .5s both}
 @keyframes efade{from{opacity:0}}
 @keyframes epop{from{opacity:0;transform:translateY(40px) scale(.9)}}
+@keyframes efadeout{to{opacity:0}}
+@keyframes epopout{to{opacity:0;transform:translateY(24px) scale(.96)}}
+#end.pw.out{animation:efadeout .25s ease both}
+#end.pw.out>div{animation:epopout .25s ease both}
 @keyframes erise{from{opacity:0;transform:translateY(18px)}}
 @keyframes ebig{40%{transform:scale(1.18)}}
 button.go,.tile,#joker,#snd,#pz{transition:transform .12s,box-shadow .12s;touch-action:manipulation}
@@ -731,7 +735,7 @@ const IMG={"Prise de la Bastille": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAA
 const fy=y=>y<0?Math.abs(y)+" av. J.-C.":String(y);
 const chip=c=>'<span class="cat" style="--c:'+COL[c]+'"><i></i>'+c+'</span>';
 let deck,line,cur,busy,pend,pl,pi,mode,PK=0;
-function ov(h){$("ec").innerHTML=h;$("end").classList.remove("fin","pw");$("end").classList.add("on")}
+function ov(h){$("ec").innerHTML=h;$("end").classList.remove("fin","pw","out");$("end").classList.add("on")}
 function ok(e){return !e[5]||!!pro().u}
 const PKS=[{n:"Mélange",f:(a)=>E.filter(e=>a||ok(e))},...["Histoire","Pop culture","Technologie","Sciences","Sport"].map(c=>({n:c,f:(a)=>E.filter(e=>e[2]===c&&(a||ok(e)))})),{n:"XXᵉ siècle",f:(a)=>E.filter(e=>e[1]>=1900&&e[1]<2000&&(a||ok(e)))},{n:"Mes cartes",perso:1,f:()=>persoCards()}];
 let AC=null,SND=true;try{SND=localStorage.getItem("snd")!=="0"}catch(_){}
@@ -896,7 +900,7 @@ function paywall(cb){PAYCB=cb;
  +'<button class="go play pwb" onclick="buy()">'+CROWN+'Débloquer Premium</button>'
  +'<button class="go alt" onclick="restore()">Restaurer un achat</button><p class="v">Achat simulé pour les tests</p><button class="go alt" onclick="later()">Plus tard</button>');
  $("end").classList.add("pw")}
-function later(){PAYCB=null;$("end").classList.remove("on")}
+function later(){PAYCB=null;const e=$("end");if(!e.classList.contains("pw")){e.classList.remove("on");return}e.classList.add("out");setTimeout(()=>e.classList.remove("on","out","pw"),250)}
 function buy(){const p=pro();p.u=true;proSave(p);$("end").classList.remove("on","pw");say("Merci ! Version premium débloquée");if($("sets").classList.contains("on"))settings();const f=PAYCB;PAYCB=null;if(f)f();else if(!$("sets").classList.contains("on"))home()}
 function resetPro(){proSave({});home();say("Achat réinitialisé, compteur remis à zéro")}
 function restore(){say(pro().u?"Achat restauré":"Aucun achat à restaurer")}
