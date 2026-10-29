@@ -285,6 +285,10 @@ html,body{position:fixed;inset:0;width:100%;max-width:100%;overflow:hidden;overs
 @keyframes efade{from{opacity:0}}
 @keyframes epop{from{opacity:0;transform:translateY(40px) scale(.9)}}
 @keyframes efadeout{to{opacity:0}}
+@keyframes pgin{from{opacity:0;transform:translateY(12px)}}
+@keyframes pgout{to{opacity:0;transform:translateY(12px)}}
+.ov.on,#learn.on,#home.on{animation:pgin .28s ease both}
+.ov.out,#learn.out,#home.out{animation:pgout .25s ease both}
 @keyframes epopout{to{opacity:0;transform:translateY(24px) scale(.96)}}
 #end.pw.out{animation:efadeout .25s ease both}
 #end.pw.out>div{animation:epopout .25s ease both}
@@ -1052,6 +1056,15 @@ window.addEventListener("scroll",()=>{if(scrollX||scrollY)scrollTo(0,0)});[docum
 $("strip").addEventListener("scroll",mmv);
 $("mm").onclick=e=>{const r=$("mm").getBoundingClientRect(),S=$("strip");S.scrollTo({left:(e.clientX-r.left)/r.width*S.scrollWidth-S.clientWidth/2,behavior:"smooth"})};
 applyTheme();applyAccent();menu();
+</script>
+<script>
+(function(){["sets","perso","coll","scores","learn","home"].forEach(id=>{const el=document.getElementById(id);if(!el)return;
+ let state=el.classList.contains("on")?"open":"closed",tm=0;
+ const obs=new MutationObserver(()=>{const on=el.classList.contains("on");
+  if(on&&state!=="open"){if(tm){clearTimeout(tm);tm=0;el.classList.remove("out")}state="open"}
+  else if(!on&&state==="open"){el.classList.add("on","out");obs.takeRecords();state="leaving";
+   tm=setTimeout(()=>{el.classList.remove("on","out");obs.takeRecords();state="closed";tm=0},250)}});
+ obs.observe(el,{attributes:true,attributeFilter:["class"]})})})();
 </script>
 </body>
 </html>
