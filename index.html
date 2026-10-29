@@ -500,7 +500,7 @@ button:disabled:active{transform:none!important}
 <li>Pause met la partie en attente ; « Reprendre la partie » sur le menu la relance.</li>
 <li>« Apprendre », en fin de partie, affiche les cartes posées avec leur date.</li>
 <li>Réglages : son, langue, thème clair, sombre ou automatique, et couleur d’accentuation.</li>
-<li>Collection : les badges se débloquent au fil des parties.</li>
+<li>Badges : ils se débloquent au fil des parties.</li>
 </ul>
 <h3>Parties gratuites</h3>
 <p>Vous disposez de 3 parties gratuites par jour. La version premium débloque les parties sans limite, 200 cartes supplémentaires, 6 thèmes colorés, l’ajout de dates personnelles pour un jeu unique et le badge « Contributeur ».</p>
@@ -546,7 +546,7 @@ button:disabled:active{transform:none!important}
 <li>Pause puts the game on hold; “Resume game” on the menu picks it up again.</li>
 <li>“Learn”, at the end of a game, shows the cards you placed with their dates.</li>
 <li>Settings: sound, language, light, dark or automatic theme, and accent colour.</li>
-<li>Collection: badges unlock as you play.</li>
+<li>Badges: they unlock as you play.</li>
 </ul>
 <h3>Free games</h3>
 <p>You get 3 free games a day. The premium version unlocks unlimited games, 200 extra cards, 6 colour themes, your own personal dates for a one-of-a-kind game, and the “Contributor” badge.</p>
@@ -555,14 +555,14 @@ button:disabled:active{transform:none!important}
 <div id="sets" class="ov"></div>
 <div id="scores" class="ov"></div>
 <div id="perso" class="ov"></div>
-<div id="coll" class="ov"><div class="sh"><span class="k">Collection</span><button class="go alt" onclick="$('coll').classList.remove('on')" style="margin:0">Fermer</button></div><h1 class="sttl">Badges</h1><p class="meta" id="cn"></p><div id="cl"></div></div>
+<div id="coll" class="ov"><div class="sh"><span class="k">Badges</span><button class="go alt" onclick="$('coll').classList.remove('on')" style="margin:0">Fermer</button></div><h1 class="sttl">Badges</h1><p class="meta" id="cn"></p><div id="cl"></div></div>
 <div id="toast"></div>
 <div id="end"><div id="ec"></div></div>
 <script>
 let LANG="fr";try{if(localStorage.getItem("frise_lang")==="en")LANG="en"}catch(_){}
 let EN=LANG==="en";document.documentElement.lang=LANG;
 const _t=(fr,en)=>EN?en:fr;
-const APP_VER="1.132",APP_UPD="29/10/2026";
+const APP_VER="1.133",APP_UPD="29/10/2026";
 const CATN={"Histoire":"History","Pop culture":"Pop culture","Technologie":"Technology","Sciences":"Science","Sport":"Sport","Perso":"Personal"};
 const PKN={"Mélange":"Mix","XXᵉ siècle":"20th century","Mes cartes":"My cards"};
 const catN=c=>EN?(CATN[c]||c):c,pkN=n=>EN?(PKN[n]||CATN[n]||n):n;
@@ -941,7 +941,7 @@ function home(){
  $("hm").innerHTML='<div class="brand">'+LOGO+'<h1><span>Frise</span></h1><p class="sub">'+_t("Le jeu des dates. Placez chaque carte dans l’ordre chronologique.","The dates game. Put every card in chronological order.")+'</p></div>'
  +'<div class="mid">'+(pro().u?'':'<p class="capt">'+capText()+'</p><button class="go unlk" style="background:var(--fluo);color:#111;margin:0" onclick="paywall(null)">'+CROWN+_t('Débloquer la version premium','Unlock the premium version')+'</button>')+'</div><div class="acts"><button class="go play" style="margin:0" onclick="setup()">'+_t("Jouer","Play")+'</button>'
  +(LIVE?'<button class="go alt" style="margin:0;width:100%" onclick="resume()">'+_t("Reprendre la partie","Resume game")+'</button>':'')
- +'<button class="go alt" style="margin:0;width:100%" onclick="collection()">Collection</button>'
+ +'<button class="go alt" style="margin:0;width:100%" onclick="collection()">Badges</button>'
  +'<div class="duo"><button class="go alt" style="margin:0" onclick="settings()">'+_t("Réglages","Settings")+'</button><button class="go alt" style="margin:0" onclick="scores()">'+_t("Classement","Scores")+'</button></div></div>'}
 function setup(){
  $("home").dataset.s=2;
@@ -971,7 +971,7 @@ function countPlay(){const p=pro();if(p.day!==today()){p.day=today();p.n=0}p.n=(
 function say(t){const x=$("toast");x.textContent=t;x.classList.add("on");clearTimeout(TT);TT=setTimeout(()=>x.classList.remove("on"),2400)}
 function paywall(cb){PAYCB=cb;
  const st=stats(),placed=st.placed||0,best=(()=>{try{const a=JSON.parse(localStorage.getItem(SCK))||[];return a.length?Math.max(...a.map(g=>Math.max(...g.p.map(q=>q.s)))):0}catch(_){return 0}})(),L=playsLeft();
- const perks=EN?[["∞","Unlimited games","Play as much as you like, solo or in duel mode."],["+200","Extra cards","New dates across all five categories."],["🎨","6 themes and accent colours","Personalise the timeline with neon palettes."],["🗓️","Your own dates","Your own events and years, for a one-of-a-kind game."],["⭐","“Contributor” badge","Show your support in your collection."]]:[["∞","Parties illimitées","Jouez autant que vous voulez, solo ou en duel."],["+200","Cartes supplémentaires","De nouvelles dates dans les cinq catégories."],["🎨","6 thèmes et couleurs d’accentuation","Personnalisez la frise avec les palettes fluo."],["🗓️","Vos propres dates","Vos événements et années, pour un jeu unique."],["⭐","Badge « Contributeur »","Affichez votre soutien dans la collection."]];
+ const perks=EN?[["∞","Unlimited games","Play as much as you like, solo or in duel mode."],["+200","Extra cards","New dates across all five categories."],["🎨","6 themes and accent colours","Personalise the timeline with neon palettes."],["🗓️","Your own dates","Your own events and years, for a one-of-a-kind game."],["⭐","“Contributor” badge","Show your support among your badges."]]:[["∞","Parties illimitées","Jouez autant que vous voulez, solo ou en duel."],["+200","Cartes supplémentaires","De nouvelles dates dans les cinq catégories."],["🎨","6 thèmes et couleurs d’accentuation","Personnalisez la frise avec les palettes fluo."],["🗓️","Vos propres dates","Vos événements et années, pour un jeu unique."],["⭐","Badge « Contributeur »","Affichez votre soutien parmi vos badges."]];
  ov('<div class="pw-crown">'+CROWN+'</div><h2 class="pw-h">Frise Premium</h2><p class="pw-sub">'+_t("Un achat unique · à peine le prix d’un café","A one-time purchase · less than the price of a coffee")+'</p>'
  +'<p class="pw-stat">'+(EN?(placed?'You’ve already placed '+placed+' card'+(placed===1?'':'s')+(best?' · best score '+best:'')+'. There’s more to come.':'Hours of play await, alone or with friends.')+(L===0?'<br>You’ve used up today’s 3 free games.':''):(placed?'Vous avez déjà placé '+placed+' cartes'+(best?' · meilleur score '+best:'')+'. La suite vous attend.':'Des heures de jeu vous attendent, seul ou à plusieurs.')+(L===0?'<br>Vos 3 parties gratuites d’aujourd’hui sont épuisées.':''))+'</p>'
  +'<ul class="pw-list">'+perks.map(([i,t,d])=>'<li><i>'+i+'</i><span><b>'+t+'</b><small>'+d+'</small></span></li>').join("")+'</ul>'
