@@ -352,6 +352,22 @@ button:disabled:active{transform:none!important}
 #about .k{font:500 12px ui-monospace,Menlo,monospace;color:var(--mute);display:block;margin-bottom:2px}
 #about .v{font-size:20px;font-weight:800;letter-spacing:-.02em}
 .acts{display:flex;flex-direction:column;gap:12px;margin-top:auto;width:100%}
+#coll{position:fixed;inset:0;background:var(--bg);z-index:31;display:none;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 16px) 24px calc(env(safe-area-inset-bottom,0px) + 16px)}
+#coll.on{display:flex}
+#coll .cn{margin:12px 0 8px}
+#coll h1{font-size:clamp(44px,min(18vw,9vh),80px);font-weight:800;letter-spacing:-.06em;line-height:.95;margin:0 0 6px}
+#coll .k{font:500 12px ui-monospace,Menlo,monospace;color:var(--mute)}
+#coll .v{font:500 13px ui-monospace,Menlo,monospace;color:var(--ink);margin:0}
+#cl{flex:1;overflow-y:auto;min-height:0}
+.bd{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line);opacity:.4}
+.bd.on{opacity:1}
+.be{font-size:30px;width:40px;text-align:center;flex:none}
+.bt{flex:1;display:flex;flex-direction:column;min-width:0}
+.bt b{font-size:17px;font-weight:800;letter-spacing:-.02em}
+.bt small{color:var(--mute);font:500 12px ui-monospace,Menlo,monospace}
+.bc{font-size:22px;font-weight:800;color:var(--ok);width:24px;text-align:right;flex:none}
+#toast{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:50%;transform:translate(-50%,-160%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:99px;font:700 14px Manrope,system-ui,sans-serif;z-index:40;transition:transform .45s cubic-bezier(.2,1.2,.4,1);white-space:nowrap;box-shadow:var(--sh);pointer-events:none}
+#toast.on{transform:translate(-50%,0)}
 </style>
 </head>
 <body>
@@ -362,7 +378,9 @@ button:disabled:active{transform:none!important}
 <div id="guess"><div id="gt"></div><div id="gv"></div><input type="range" id="gr" step="1"><div class="gb"><button class="go" id="gok">Valider</button><button class="go alt" id="gsk">Passer</button></div></div>
 <div id="home"><div class="bg"><i></i><i></i><i></i></div><div class="deco" id="dc"></div><div id="hm"></div></div>
 <div id="learn"><div id="lh"><b>Mode apprentissage</b><button class="go alt" id="lx" style="margin:0">Fermer</button></div><div id="ll"></div></div>
-<div id="about"><div style="display:flex;justify-content:flex-end"><button class="go alt" onclick="$('about').classList.remove('on')" style="margin:0">Fermer</button></div><div class="ab"><span class="k">À propos</span><h1>Frise</h1><p>Ce jeu est inspiré du jeu de société Timeline.</p><span class="k">Version</span><p class="v">1.59</p><span class="k">Créateur</span><p class="v">Lucas Courcy</p></div></div>
+<div id="about"><div style="display:flex;justify-content:flex-end"><button class="go alt" onclick="$('about').classList.remove('on')" style="margin:0">Fermer</button></div><div class="ab"><span class="k">À propos</span><h1>Frise</h1><p>Ce jeu est inspiré du jeu de société Timeline.</p><span class="k">Version</span><p class="v">1.60</p><span class="k">Créateur</span><p class="v">Lucas Courcy</p></div></div>
+<div id="coll"><div style="display:flex;justify-content:space-between;align-items:center"><span class="k">Collection</span><button class="go alt" onclick="$('coll').classList.remove('on')" style="margin:0">Fermer</button></div><div class="cn"><h1>Badges</h1><p class="v" id="cn"></p></div><div id="cl"></div></div>
+<div id="toast"></div>
 <div id="end"><div id="ec"></div></div>
 <script>
 
@@ -419,6 +437,24 @@ const PIC=["🌍","📜","🎬","💡","🔬","🏅","🕰️"].map(eg);
 function tile(k,v,on,ic,t,s,c){return '<button class="tile'+(on?' on':'')+'" data-k="'+k+'" data-v="'+v+'" style="--c:'+(c||"transparent")+'"><span class="ti">'+ic+'</span><b>'+t+'</b><small>'+s+'</small></button>'}
 function menu(){home()}
 function about(){$("about").classList.add("on")}
+const BADGES=[
+{id:"p1",e:"🎈",t:"Première carte",d:"Placer 1 carte",f:s=>s.placed>=1},
+{id:"p50",e:"🗂️",t:"Cinquantaine",d:"Placer 50 cartes",f:s=>s.placed>=50},
+{id:"p100",e:"🏛️",t:"Centurion",d:"Placer 100 cartes",f:s=>s.placed>=100},
+{id:"s3",e:"🔥",t:"En feu",d:"Série de 3 sans faute",f:s=>s.best>=3},
+{id:"s6",e:"⚡",t:"Imparable",d:"Série de 6 sans faute",f:s=>s.best>=6},
+{id:"s10",e:"💎",t:"Infaillible",d:"Série de 10 sans faute",f:s=>s.best>=10},
+{id:"x1",e:"🎯",t:"Dans le mille",d:"1 date exacte",f:s=>s.exact>=1},
+{id:"x10",e:"🔭",t:"Précis",d:"10 dates exactes",f:s=>s.exact>=10},
+{id:"x50",e:"🏆",t:"Horloger",d:"50 dates exactes",f:s=>s.exact>=50}];
+const STK="frise_stats";let TT=0;
+function stats(){try{return JSON.parse(localStorage.getItem(STK))||{}}catch(_){return {}}}
+function saveStats(s){try{localStorage.setItem(STK,JSON.stringify(s))}catch(_){}}
+function track(g,y,streak){const s=stats(),before=BADGES.map(b=>b.f(s));s.placed=(s.placed||0)+1;if(g!==null&&g===y)s.exact=(s.exact||0)+1;s.best=Math.max(s.best||0,streak);saveStats(s);return BADGES.filter((b,k)=>!before[k]&&b.f(s))}
+function toast(b){const t=$("toast");t.textContent=b.e+"  Badge débloqué : "+b.t;t.classList.add("on");clearTimeout(TT);TT=setTimeout(()=>t.classList.remove("on"),2400)}
+function collection(){const s=stats(),n=BADGES.filter(b=>b.f(s)).length;$("cn").textContent=n+" / "+BADGES.length+" obtenus";
+ $("cl").innerHTML=BADGES.map(b=>{const ok=b.f(s);return '<div class="bd'+(ok?' on':'')+'"><span class="be">'+b.e+'</span><span class="bt"><b>'+b.t+'</b><small>'+b.d+'</small></span><span class="bc">'+(ok?'✓':'')+'</span></div>'}).join("");
+ $("coll").classList.add("on")}
 function fit(){const c=$("stage").classList.contains("compact"),t=$("ct");let s=c?19:21;
  t.style.webkitLineClamp="unset";t.style.fontSize=s+"px";
  while(s>10&&t.scrollHeight>t.clientHeight+1){s--;t.style.fontSize=s+"px"}}
@@ -444,6 +480,7 @@ function home(){
  $("hm").innerHTML='<div class="brand">'+LOGO+'<h1><span>Frise</span></h1><p class="sub">Le jeu des dates. Placez chaque carte dans l’ordre chronologique.</p></div>'
  +'<div class="acts"><button class="go play" style="margin:0" onclick="setup()">Jouer</button>'
  +(LIVE?'<button class="go alt" style="margin:0;width:100%" onclick="resume()">Reprendre la partie</button>':'')
+ +'<button class="go alt" style="margin:0;width:100%" onclick="collection()">Collection</button>'
  +'<button class="go alt" style="margin:0;width:100%" onclick="about()">À propos</button></div>'}
 function setup(){
  $("home").dataset.s=2;
@@ -524,11 +561,12 @@ function resolve(ok,g,W,sc){
  const p=pl[pi],y=cur[1],el=pend.el;
  $("an").textContent="";
  if(ok){
-  p.streak++;p.ok++;p.tot++;p.best=Math.max(p.best,p.streak);cur.r="ok";const m=Math.min(p.streak,5);let b=0;
+  p.streak++;p.ok++;p.tot++;p.best=Math.max(p.best,p.streak);cur.r="ok";const nb=track(g,y,p.streak);const m=Math.min(p.streak,5);let b=0;
   if(g!==null){const e=Math.abs(g-y);b=e===0?5:e<=W/20?3:e<=W/8?1:0;if(b)b=Math.max(1,Math.round(b*sc))}
   const sp=cur.sp||0,gain=10*m+b+sp;p.score+=gain;
   let t="Bien placé ! +"+gain+(m>1?" (série ×"+m+")":"")+(b?" dont précision +"+b:"")+(sp?" · rapidité +"+sp:"");
   if(p.streak%5===0){p.joker++;t+=" · joker gagné !";setTimeout(SFX.joker,600)}
+  nb.forEach((b,k)=>setTimeout(()=>toast(b),900+k*2600));
   SFX.good(m);msg(t,"ok");note(fy(y)+" : "+cur[3]);fpts(gain,el.getBoundingClientRect());burst(el.getBoundingClientRect(),24+m*14);
   const i=pend.i,rc=el.getBoundingClientRect(),x0=rc.left+rc.width/2;line.splice(i,0,cur);pend=null;render();
   {const w=document.querySelectorAll("#line .t")[i];w.classList.add("win");lockOn(i,x0)}
