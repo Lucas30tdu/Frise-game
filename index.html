@@ -351,6 +351,7 @@ button:disabled:active{transform:none!important}
 #about .ab p{margin:0 0 14px;font-size:16px;line-height:1.4}
 #about .k{font:500 12px ui-monospace,Menlo,monospace;color:var(--mute);display:block;margin-bottom:2px}
 #about .v{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.acts{display:flex;flex-direction:column;gap:12px;margin-top:auto;width:100%}
 </style>
 </head>
 <body>
@@ -441,9 +442,9 @@ const IC2=`<svg viewBox="0 0 40 40" width="40" height="40"><rect x="5" y="9" wid
 function home(){
  $("end").classList.remove("on");$("home").classList.add("on");$("home").dataset.s=1;
  $("hm").innerHTML='<div class="brand">'+LOGO+'<h1><span>Frise</span></h1><p class="sub">Le jeu des dates. Placez chaque carte dans l’ordre chronologique.</p></div>'
- +'<button class="go play" onclick="setup()">Jouer</button>'
- +'<button class="go alt resbtn" style="margin-top:12px" onclick="about()">À propos</button>'
- +(LIVE?'<button class="go alt resbtn" onclick="resume()">Reprendre la partie</button>':'')}
+ +'<div class="acts"><button class="go play" style="margin:0" onclick="setup()">Jouer</button>'
+ +'<button class="go alt" style="margin:0;width:100%" onclick="about()">À propos</button>'
+ +(LIVE?'<button class="go alt" style="margin:0;width:100%" onclick="resume()">Reprendre la partie</button>':'')+'</div>'}
 function setup(){
  $("home").dataset.s=2;
  $("hm").innerHTML='<button class="back" onclick="home()">← Retour</button><h2 class="ttl">Nouvelle partie</h2>'
