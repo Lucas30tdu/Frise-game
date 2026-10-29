@@ -446,7 +446,7 @@ button:disabled:active{transform:none!important}
 <div id="guess"><div id="gt"></div><div id="gv"></div><input type="range" id="gr" step="1"><div class="gb"><button class="go" id="gok">Valider</button><button class="go alt" id="gsk">Passer</button></div></div>
 <div id="home"><div class="bg"><i></i><i></i><i></i></div><div class="deco" id="dc"></div><div id="hm"></div></div>
 <div id="learn"><div id="lh"><b>Mode apprentissage</b><button class="go alt" id="lx" style="margin:0">Fermer</button></div><div id="ll"></div></div>
-<template id="abt"><h3 class="sec">À propos</h3><p class="note">Ce jeu est inspiré du jeu de société Timeline.</p><div class="sr"><span>Version</span><span class="sv">1.97</span></div><div class="sr"><span>Créateur</span><span class="sv">Lucas Courcy</span></div><button class="go alt" style="margin:18px 0 0;width:100%" onclick="resetPro()">Restaurer l’achat</button><div class="how">
+<template id="abt"><div class="how">
 <h2>Comment jouer ?</h2>
 <p>Placez chaque carte à la bonne place dans la frise, de la plus ancienne à la plus récente. Chaque carte affiche son intitulé, sa date reste cachée.</p>
 <h3>Le principe</h3>
@@ -491,7 +491,7 @@ button:disabled:active{transform:none!important}
 <h3>Parties gratuites</h3>
 <p>Vous disposez de 3 parties gratuites par jour. La version premium débloque les parties sans limite, 200 cartes supplémentaires, 6 thèmes colorés, l’ajout de dates personnelles pour un jeu unique et le badge « Contributeur ».</p>
 </div>
-</template>
+<h3 class="sec">À propos</h3><p class="note">Ce jeu est inspiré du jeu de société Timeline.</p><div class="sr"><span>Version</span><span class="sv">1.99</span></div><div class="sr"><span>Créateur</span><span class="sv">Lucas Courcy</span></div><button class="go alt" style="margin:18px 0 0;width:100%" onclick="resetPro()">Restaurer l’achat</button></template>
 <div id="sets" class="ov"></div>
 <div id="scores" class="ov"></div>
 <div id="perso" class="ov"></div>
@@ -800,7 +800,8 @@ function persoAdd(){const t=$("pt").value.trim(),y=parseInt($("py").value,10),s=
 function persoDel(i){const a=persoList();a.splice(i,1);persoSave(a);PEDIT=null;renderPerso()}
 function persoEdit(i){PEDIT=i;renderPerso();$("perso").scrollTop=0}
 function persoCancel(){PEDIT=null;renderPerso()}
-function saveScore(){try{const a=JSON.parse(localStorage.getItem(SCK))||[];a.push({t:Date.now(),m:mode,th:PKS[PK].n,p:pl.map(q=>({s:q.score,ok:q.ok,tot:q.tot}))});a.sort((x,y)=>Math.max(...y.p.map(q=>q.s))-Math.max(...x.p.map(q=>q.s)));localStorage.setItem(SCK,JSON.stringify(a.slice(0,50)))}catch(_){}}
+let NOSC=false;
+function saveScore(){if(NOSC)return;try{const a=JSON.parse(localStorage.getItem(SCK))||[];a.push({t:Date.now(),m:mode,th:PKS[PK].n,p:pl.map(q=>({s:q.score,ok:q.ok,tot:q.tot}))});a.sort((x,y)=>Math.max(...y.p.map(q=>q.s))-Math.max(...x.p.map(q=>q.s)));localStorage.setItem(SCK,JSON.stringify(a.slice(0,50)))}catch(_){}}
 function scores(){let a=[];try{a=JSON.parse(localStorage.getItem(SCK))||[]}catch(_){}
  const rows=a.map((g,i)=>{const d=new Date(g.t).toLocaleDateString("fr-FR",{day:"numeric",month:"short",year:"numeric"});
   const sc=g.p.map(q=>q.s).join(" – "),ok=g.p.map(q=>q.ok+"/"+q.tot).join(" – ");
@@ -900,7 +901,7 @@ function buy(){const p=pro();p.u=true;proSave(p);$("end").classList.remove("on",
 function resetPro(){proSave({});home();say("Achat réinitialisé, compteur remis à zéro")}
 function restore(){say(pro().u?"Achat restauré":"Aucun achat à restaurer")}
 function start(n,pk){if(playsLeft()>0){if(LIVE)countPlay();startGame(n,pk)}else paywall(()=>startGame(n,pk))}
-function startGame(n,pk){$("home").classList.remove("on");LIVE=true;GUESS=SEL.g;TIMER=SEL.t;mode=n;if(pk<0)pk=1+Math.floor(Math.random()*5);PK=pk||0;ac();E.forEach(e=>{e.o=e.r=undefined});deck=[...PKS[PK].f(),...(SEL.pc&&pro().u&&!PKS[PK].perso?persoCards():[])].sort(()=>Math.random()-.5);line=[];pl=[];
+function startGame(n,pk){$("home").classList.remove("on");LIVE=true;GUESS=SEL.g;TIMER=SEL.t;mode=n;if(pk<0)pk=1+Math.floor(Math.random()*5);PK=pk||0;NOSC=!!(PKS[PK].perso||(SEL.pc&&pro().u));ac();E.forEach(e=>{e.o=e.r=undefined});deck=[...PKS[PK].f(),...(SEL.pc&&pro().u&&!PKS[PK].perso?persoCards():[])].sort(()=>Math.random()-.5);line=[];pl=[];
  for(let k=0;k<n;k++)pl.push({n:n>1?"J"+(k+1):"Solo",lives:3,joker:1,streak:0,score:0,best:0,ok:0,tot:0});
  pi=0;pend=null;$("end").classList.remove("on");note("Paquet : "+PKS[PK].n+" ("+deck.length+" cartes)");draw()}
 function head(){
@@ -1041,7 +1042,7 @@ const dh=E.filter(e=>e[4]&&ok(e)).filter((e,i)=>i%7===0).sort((a,b)=>a[1]-b[1]).
 (function(){const H=$("home");if(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches)return;let tx=0,ty=0,cx=0,cy=0,last=-1e9;
  const mv=e=>{tx=Math.max(-1.6,Math.min(1.6,(e.clientX/innerWidth-.5)*3.2));ty=Math.max(-1.6,Math.min(1.6,(e.clientY/innerHeight-.5)*3.2));last=performance.now()};
  H.addEventListener("pointermove",mv,{passive:true});H.addEventListener("pointerdown",mv,{passive:true});
- let px0=1e9,py0=1e9;const f=t=>{if(H.classList.contains("on")){if(t-last>2500){tx=Math.sin(t/3800)*.7;ty=Math.cos(t/5200)*.5}cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;if(Math.abs(cx-px0)>.001||Math.abs(cy-py0)>.001){px0=cx;py0=cy;H.style.setProperty("--px",cx.toFixed(3));H.style.setProperty("--py",cy.toFixed(3))}}requestAnimationFrame(f)};requestAnimationFrame(f)})();
+ let px0=1e9,py0=1e9;const f=t=>{if(H.classList.contains("on")){const idle=t-last>2500;if(idle){tx=0;ty=0}const k=idle?.015:.12;cx+=(tx-cx)*k;cy+=(ty-cy)*k;if(Math.abs(cx-px0)>.001||Math.abs(cy-py0)>.001){px0=cx;py0=cy;H.style.setProperty("--px",cx.toFixed(3));H.style.setProperty("--py",cy.toFixed(3))}}requestAnimationFrame(f)};requestAnimationFrame(f)})();
 $("pz").onclick=pause;
 window.addEventListener("scroll",()=>{if(scrollX||scrollY)scrollTo(0,0)});[document.documentElement,document.body].forEach(e=>e.addEventListener("scroll",()=>{if(e.scrollLeft)e.scrollLeft=0}));
 $("strip").addEventListener("scroll",mmv);
