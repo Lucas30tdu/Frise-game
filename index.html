@@ -344,6 +344,13 @@ button:disabled:active{transform:none!important}
 .im *{color:#fff!important}
 .im .cat,.im .er,.im small,.im .q{color:rgba(255,255,255,.85)!important}
 
+#about{position:fixed;inset:0;background:var(--bg);z-index:31;display:none;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 16px) 24px calc(env(safe-area-inset-bottom,0px) + 24px)}
+#about.on{display:flex}
+#about .ab{margin:auto 0}
+#about h1{font-size:clamp(52px,min(22vw,11vh),96px);font-weight:800;letter-spacing:-.06em;line-height:.95;margin:0 0 14px}
+#about .ab p{margin:0 0 14px;font-size:16px;line-height:1.4}
+#about .k{font:500 12px ui-monospace,Menlo,monospace;color:var(--mute);display:block;margin-bottom:2px}
+#about .v{font-size:20px;font-weight:800;letter-spacing:-.02em}
 </style>
 </head>
 <body>
@@ -354,6 +361,7 @@ button:disabled:active{transform:none!important}
 <div id="guess"><div id="gt"></div><div id="gv"></div><input type="range" id="gr" step="1"><div class="gb"><button class="go" id="gok">Valider</button><button class="go alt" id="gsk">Passer</button></div></div>
 <div id="home"><div class="bg"><i></i><i></i><i></i></div><div class="deco" id="dc"></div><div id="hm"></div></div>
 <div id="learn"><div id="lh"><b>Mode apprentissage</b><button class="go alt" id="lx" style="margin:0">Fermer</button></div><div id="ll"></div></div>
+<div id="about"><div style="display:flex;justify-content:flex-end"><button class="go alt" onclick="$('about').classList.remove('on')" style="margin:0">Fermer</button></div><div class="ab"><span class="k">À propos</span><h1>Frise</h1><p>Ce jeu est inspiré du jeu de société Timeline.</p><span class="k">Version</span><p class="v">1.57</p><span class="k">Créateur</span><p class="v">Lucas Courcy</p></div></div>
 <div id="end"><div id="ec"></div></div>
 <script>
 
@@ -409,6 +417,7 @@ function eg(e){if(!e)return"";if(!EG[e]){try{const c=document.createElement("can
 const PIC=["🌍","📜","🎬","💡","🔬","🏅","🕰️"].map(eg);
 function tile(k,v,on,ic,t,s,c){return '<button class="tile'+(on?' on':'')+'" data-k="'+k+'" data-v="'+v+'" style="--c:'+(c||"transparent")+'"><span class="ti">'+ic+'</span><b>'+t+'</b><small>'+s+'</small></button>'}
 function menu(){home()}
+function about(){$("about").classList.add("on")}
 function fit(){const c=$("stage").classList.contains("compact"),t=$("ct");let s=c?19:21;
  t.style.webkitLineClamp="unset";t.style.fontSize=s+"px";
  while(s>10&&t.scrollHeight>t.clientHeight+1){s--;t.style.fontSize=s+"px"}}
@@ -433,6 +442,7 @@ function home(){
  $("end").classList.remove("on");$("home").classList.add("on");$("home").dataset.s=1;
  $("hm").innerHTML='<div class="brand">'+LOGO+'<h1><span>Frise</span></h1><p class="sub">Le jeu des dates. Placez chaque carte dans l’ordre chronologique.</p></div>'
  +'<button class="go play" onclick="setup()">Jouer</button>'
+ +'<button class="go alt resbtn" style="margin-top:12px" onclick="about()">À propos</button>'
  +(LIVE?'<button class="go alt resbtn" onclick="resume()">Reprendre la partie</button>':'')}
 function setup(){
  $("home").dataset.s=2;
