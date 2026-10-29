@@ -290,6 +290,9 @@ html,body{position:fixed;inset:0;width:100%;max-width:100%;overflow:hidden;overs
 .ov.on,#learn.on,#home.on{animation:pgin .28s ease both}
 .ov.out,#learn.out,#home.out{animation:pgout .25s ease both}
 .scrin{animation:pgin .28s ease both}
+#splash{position:fixed;inset:0;background:var(--bg);z-index:60;display:flex;align-items:center;justify-content:center;transition:opacity .45s ease}
+#splash.out{opacity:0;pointer-events:none}
+#splash .logo{width:clamp(96px,30vw,140px)}
 @keyframes epopout{to{opacity:0;transform:translateY(24px) scale(.96)}}
 #end.pw.out{animation:efadeout .25s ease both}
 #end.pw.out>div{animation:epopout .25s ease both}
@@ -1071,6 +1074,10 @@ applyTheme();applyAccent();menu();
  const hm=document.getElementById("hm");
  if(hm)new MutationObserver(()=>scrIn(hm)).observe(hm,{childList:true});
 })();
+</script>
+<script>
+(function(){const sp=document.createElement("div");sp.id="splash";sp.innerHTML=LOGO;document.body.appendChild(sp);
+ setTimeout(()=>sp.classList.add("out"),1100);setTimeout(()=>sp.remove(),1600)})();
 </script>
 </body>
 </html>
