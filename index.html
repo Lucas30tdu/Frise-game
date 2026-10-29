@@ -298,13 +298,13 @@ button.go.play:active{box-shadow:0 1px 0 var(--fd),0 6px 12px -6px rgba(var(--fg
 #joker:active,#snd:active,#pz:active{box-shadow:0 0 0 var(--line),0 2px 6px -4px rgba(0,0,0,.25)}
 .tile:active{box-shadow:0 1px 4px rgba(0,0,0,.15),inset 0 4px 0 var(--c,transparent)}
 button:disabled:active{transform:none!important}
-:root{--sh:clamp(190px,33vh,290px);--sh:clamp(190px,33dvh,290px)}
-#stage,#stage.compact{height:var(--sh);margin-top:clamp(6px,2.4vh,22px);margin-top:clamp(6px,2.4dvh,22px)}
-#tilt{width:calc((var(--sh) - 42px)*.766);height:calc(var(--sh) - 42px)}
+:root{--stg:clamp(190px,33vh,290px);--stg:clamp(190px,33dvh,290px)}
+#stage,#stage.compact{height:var(--stg);margin-top:clamp(6px,2.4vh,22px);margin-top:clamp(6px,2.4dvh,22px)}
+#tilt{width:calc((var(--stg) - 42px)*.766);height:calc(var(--stg) - 42px)}
 #an{height:clamp(34px,6.5vh,66px);min-height:clamp(34px,6.5vh,66px);height:clamp(34px,6.5dvh,66px);min-height:clamp(34px,6.5dvh,66px);margin:clamp(2px,1vh,10px) 0 clamp(4px,1.6vh,16px);margin:clamp(2px,1dvh,10px) 0 clamp(4px,1.6dvh,16px)}
 @media (max-height:720px){#card small{display:none}}
 @media (max-height:600px){#end>div{padding:14px 18px}#end h2{font-size:30px}.rc .big{font-size:38px}.rc{padding:12px}.st div{font-size:11px}}
-@media (max-height:520px){#an{display:none}:root{--sh:150px}header{padding:6px 16px 2px}.pl .sc{font-size:26px;margin:0 0 2px}#msg{display:none}#mm{margin-top:4px}#stage,#stage.compact{margin-top:4px}}
+@media (max-height:520px){#an{display:none}:root{--stg:150px}header{padding:6px 16px 2px}.pl .sc{font-size:26px;margin:0 0 2px}#msg{display:none}#mm{margin-top:4px}#stage,#stage.compact{margin-top:4px}}
 .bg{position:fixed;inset:0;overflow:hidden;z-index:-1;pointer-events:none}
 .bg i{position:absolute;border-radius:50%;background:radial-gradient(closest-side,var(--c,var(--fb)) 0%,transparent 100%);opacity:.38;will-change:transform;translate:calc(var(--px,0)*var(--d)*1px) calc(var(--py,0)*var(--d)*1px)}
 .bg i:nth-child(1){width:72vmin;height:72vmin;left:-20vmin;top:10vh;--d:46;animation:b1 17s ease-in-out infinite alternate}
