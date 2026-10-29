@@ -362,7 +362,7 @@ button:disabled:active{transform:none!important}
 <div id="guess"><div id="gt"></div><div id="gv"></div><input type="range" id="gr" step="1"><div class="gb"><button class="go" id="gok">Valider</button><button class="go alt" id="gsk">Passer</button></div></div>
 <div id="home"><div class="bg"><i></i><i></i><i></i></div><div class="deco" id="dc"></div><div id="hm"></div></div>
 <div id="learn"><div id="lh"><b>Mode apprentissage</b><button class="go alt" id="lx" style="margin:0">Fermer</button></div><div id="ll"></div></div>
-<div id="about"><div style="display:flex;justify-content:flex-end"><button class="go alt" onclick="$('about').classList.remove('on')" style="margin:0">Fermer</button></div><div class="ab"><span class="k">À propos</span><h1>Frise</h1><p>Ce jeu est inspiré du jeu de société Timeline.</p><span class="k">Version</span><p class="v">1.58</p><span class="k">Créateur</span><p class="v">Lucas Courcy</p></div></div>
+<div id="about"><div style="display:flex;justify-content:flex-end"><button class="go alt" onclick="$('about').classList.remove('on')" style="margin:0">Fermer</button></div><div class="ab"><span class="k">À propos</span><h1>Frise</h1><p>Ce jeu est inspiré du jeu de société Timeline.</p><span class="k">Version</span><p class="v">1.59</p><span class="k">Créateur</span><p class="v">Lucas Courcy</p></div></div>
 <div id="end"><div id="ec"></div></div>
 <script>
 
@@ -443,8 +443,8 @@ function home(){
  $("end").classList.remove("on");$("home").classList.add("on");$("home").dataset.s=1;
  $("hm").innerHTML='<div class="brand">'+LOGO+'<h1><span>Frise</span></h1><p class="sub">Le jeu des dates. Placez chaque carte dans l’ordre chronologique.</p></div>'
  +'<div class="acts"><button class="go play" style="margin:0" onclick="setup()">Jouer</button>'
- +'<button class="go alt" style="margin:0;width:100%" onclick="about()">À propos</button>'
- +(LIVE?'<button class="go alt" style="margin:0;width:100%" onclick="resume()">Reprendre la partie</button>':'')+'</div>'}
+ +(LIVE?'<button class="go alt" style="margin:0;width:100%" onclick="resume()">Reprendre la partie</button>':'')
+ +'<button class="go alt" style="margin:0;width:100%" onclick="about()">À propos</button></div>'}
 function setup(){
  $("home").dataset.s=2;
  $("hm").innerHTML='<button class="back" onclick="home()">← Retour</button><h2 class="ttl">Nouvelle partie</h2>'
