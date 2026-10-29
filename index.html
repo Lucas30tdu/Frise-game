@@ -504,7 +504,7 @@ button:disabled:active{transform:none!important}
 <h3>Parties gratuites</h3>
 <p>Vous disposez de 3 parties gratuites par jour. La version premium débloque les parties sans limite, 200 cartes supplémentaires, 6 thèmes colorés, l’ajout de dates personnelles pour un jeu unique et le badge « Contributeur ».</p>
 </div>
-<h3 class="sec">À propos</h3><p class="note">Ce jeu est inspiré du jeu de société Timeline.</p><div class="sr"><span>Version</span><span class="sv">1.103</span></div><div class="sr"><span>Dernière mise à jour</span><span class="sv">29/10/2026</span></div><div class="sr"><span>Créateur</span><span class="sv">Lucas Courcy</span></div><button class="go alt" style="margin:18px 0 0;width:100%" onclick="resetPro()">Restaurer l’achat</button></template>
+<h3 class="sec">À propos</h3><p class="note">Ce jeu est inspiré du jeu de société Timeline.</p><div class="sr"><span>Version</span><span class="sv">1.126</span></div><div class="sr"><span>Dernière mise à jour</span><span class="sv">29/10/2026</span></div><div class="sr"><span>Créateur</span><span class="sv">Lucas Courcy</span></div><button class="go alt" style="margin:18px 0 0;width:100%" onclick="resetPro()">Restaurer l’achat</button></template>
 <div id="sets" class="ov"></div>
 <div id="scores" class="ov"></div>
 <div id="perso" class="ov"></div>
@@ -886,8 +886,9 @@ function setup(){
 function packs(n){ov('<h2>Choisir un paquet</h2>'+PKS.map((p,k)=>'<button class="go alt" onclick="start('+n+','+k+')">'+p.n+'</button>').join("")+'<br><button class="go" onclick="start('+n+',-1)">Au hasard</button>')}
 function learn(){
  const L=$("ll");L.innerHTML="";
- [...PKS[PK].f()].sort((a,b)=>a[1]-b[1]).forEach(c=>{const r=document.createElement("div");r.className="lr";r.dataset.r=c.r||"";
+ [...PKS[PK].f()].filter(c=>c.r).sort((a,b)=>a[1]-b[1]).forEach(c=>{const r=document.createElement("div");r.className="lr";r.dataset.r=c.r||"";
   r.innerHTML='<b>'+fy(c[1])+'</b><div>'+chip(c[2])+'<div>'+eg(c[4])+" "+c[0]+'</div><p>'+c[3]+'</p></div>';L.appendChild(r)});
+ if(!L.children.length)L.innerHTML='<p class="note" style="padding:16px 0">Aucune carte posée pour l’instant.</p>';
  $("end").classList.remove("on");$("learn").classList.add("on");
  let pos=0,stop=false;L.scrollTop=0;L.onpointerdown=L.onwheel=()=>{stop=true};
  const step=()=>{if(stop||!$("learn").classList.contains("on"))return;pos+=1;L.scrollTop=pos;requestAnimationFrame(step)};
