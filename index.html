@@ -289,6 +289,7 @@ html,body{position:fixed;inset:0;width:100%;max-width:100%;overflow:hidden;overs
 @keyframes pgout{to{opacity:0;transform:translateY(12px)}}
 .ov.on,#learn.on,#home.on{animation:pgin .28s ease both}
 .ov.out,#learn.out,#home.out{animation:pgout .25s ease both}
+.scrin{animation:pgin .28s ease both}
 @keyframes epopout{to{opacity:0;transform:translateY(24px) scale(.96)}}
 #end.pw.out{animation:efadeout .25s ease both}
 #end.pw.out>div{animation:epopout .25s ease both}
@@ -1058,13 +1059,18 @@ $("mm").onclick=e=>{const r=$("mm").getBoundingClientRect(),S=$("strip");S.scrol
 applyTheme();applyAccent();menu();
 </script>
 <script>
-(function(){["sets","perso","coll","scores","learn","home"].forEach(id=>{const el=document.getElementById(id);if(!el)return;
+(function(){const scrIn=el=>{if(!el)return;el.classList.remove("scrin");void el.offsetWidth;el.classList.add("scrin");clearTimeout(el._st);el._st=setTimeout(()=>el.classList.remove("scrin"),320)};
+ ["sets","perso","coll","scores","learn","home"].forEach(id=>{const el=document.getElementById(id);if(!el)return;
  let state=el.classList.contains("on")?"open":"closed",tm=0;
  const obs=new MutationObserver(()=>{const on=el.classList.contains("on");
   if(on&&state!=="open"){if(tm){clearTimeout(tm);tm=0;el.classList.remove("out")}state="open"}
   else if(!on&&state==="open"){el.classList.add("on","out");obs.takeRecords();state="leaving";
+   if(id==="home")["header","#strip","#stage"].forEach(s=>scrIn(document.querySelector(s)));
    tm=setTimeout(()=>{el.classList.remove("on","out");obs.takeRecords();state="closed";tm=0},250)}});
- obs.observe(el,{attributes:true,attributeFilter:["class"]})})})();
+ obs.observe(el,{attributes:true,attributeFilter:["class"]})});
+ const hm=document.getElementById("hm");
+ if(hm)new MutationObserver(()=>scrIn(hm)).observe(hm,{childList:true});
+})();
 </script>
 </body>
 </html>
