@@ -842,7 +842,7 @@ function setTheme(t){try{localStorage.setItem("frise_theme",t)}catch(_){}applyTh
 function setSound(v){SND=v;try{localStorage.setItem("snd",v?"1":"0")}catch(_){}$("snd").classList.toggle("off",!v);if(v){ac();SFX.pick()}}
 function settings(){const u=!!pro().u,th=themePref(),ai=accIdx(),seg=[["light",_t("Clair","Light")],["dark",_t("Sombre","Dark")],["auto","Auto"]];
  $("sets").innerHTML='<div class="sh"><span class="k">'+_t("Réglages","Settings")+'</span><button class="go alt" onclick="$(\'sets\').classList.remove(\'on\')" style="margin:0">'+_t("Fermer","Close")+'</button></div>'
- +'<h1 class="sttl">'+_t("Paramètres","Options")+'</h1>'
+ +'<h1 class="sttl">'+_t("Réglages","Settings")+'</h1>'
  +'<div class="sr"><span>'+_t("Son en jeu","In-game sound")+'</span><button class="sw'+(SND?' on':'')+'" aria-label="'+_t("Son en jeu","In-game sound")+'" onclick="setSound(!SND);this.classList.toggle(\'on\',SND)"></button></div>'
  +'<div class="sr sc"><span>'+_t("Langue","Language")+'</span><div class="seg s2" data-i="'+(EN?1:0)+'"><i class="sl"></i>'+[["fr","Français"],["en","English"]].map(([v,l])=>'<button class="'+(LANG===v?'on':'')+'" lang="'+v+'" onclick="segSet(this);pickLang(\''+v+'\')">'+l+'</button>').join("")+'</div></div>'
  +'<div class="sr sc"><span>'+_t("Thème","Theme")+'</span><div class="seg" data-i="'+seg.findIndex(([v])=>v===th)+'"><i class="sl"></i>'+seg.map(([v,l])=>'<button class="'+(th===v?'on':'')+'" onclick="setTheme(\''+v+'\');segSet(this)">'+l+'</button>').join("")+'</div></div>'
