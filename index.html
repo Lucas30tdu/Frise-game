@@ -562,7 +562,7 @@ button:disabled:active{transform:none!important}
 let LANG="fr";try{if(localStorage.getItem("frise_lang")==="en")LANG="en"}catch(_){}
 let EN=LANG==="en";document.documentElement.lang=LANG;
 const _t=(fr,en)=>EN?en:fr;
-const APP_VER="1.131",APP_UPD="29/10/2026";
+const APP_VER="1.132",APP_UPD="29/10/2026";
 const CATN={"Histoire":"History","Pop culture":"Pop culture","Technologie":"Technology","Sciences":"Science","Sport":"Sport","Perso":"Personal"};
 const PKN={"Mélange":"Mix","XXᵉ siècle":"20th century","Mes cartes":"My cards"};
 const catN=c=>EN?(CATN[c]||c):c,pkN=n=>EN?(PKN[n]||CATN[n]||n):n;
@@ -888,7 +888,7 @@ function scores(){let a=[];try{a=JSON.parse(localStorage.getItem(SCK))||[]}catch
  const rows=a.map((g,i)=>{const d=new Date(g.t).toLocaleDateString(EN?"en-GB":"fr-FR",{day:"numeric",month:"short",year:"numeric"});
   const sc=g.p.map(q=>q.s).join(" – "),ok=g.p.map(q=>q.ok+"/"+q.tot).join(" – ");
   return '<tr><td>'+(i+1)+'</td><td class="n">'+sc+'</td><td>'+(g.m>1?"Duel":"Solo")+'</td><td>'+pkN(g.th)+'</td><td>'+ok+'</td><td>'+d+'</td></tr>'}).join("");
- $("scores").innerHTML='<div class="sh"><span class="k">Scores</span><button class="go alt" onclick="$(\'scores\').classList.remove(\'on\')" style="margin:0">'+_t("Fermer","Close")+'</button></div><h1 class="sttl">'+_t("Classement","Rankings")+'</h1>'
+ $("scores").innerHTML='<div class="sh"><span class="k">'+_t("Classement","Scores")+'</span><button class="go alt" onclick="$(\'scores\').classList.remove(\'on\')" style="margin:0">'+_t("Fermer","Close")+'</button></div><h1 class="sttl">'+_t("Classement","Scores")+'</h1>'
  +(a.length?'<div class="tw"><table class="tb"><thead><tr><th>#</th><th>Score</th><th>Mode</th><th>'+_t("Thème","Theme")+'</th><th>'+_t("Placées","Placed")+'</th><th>Date</th></tr></thead><tbody>'+rows+'</tbody></table></div>':'<p class="note">'+_t("Aucune partie terminée pour le moment.","No completed games yet.")+'</p>');
  $("scores").classList.add("on")}
 const BADGES=[
@@ -942,7 +942,7 @@ function home(){
  +'<div class="mid">'+(pro().u?'':'<p class="capt">'+capText()+'</p><button class="go unlk" style="background:var(--fluo);color:#111;margin:0" onclick="paywall(null)">'+CROWN+_t('Débloquer la version premium','Unlock the premium version')+'</button>')+'</div><div class="acts"><button class="go play" style="margin:0" onclick="setup()">'+_t("Jouer","Play")+'</button>'
  +(LIVE?'<button class="go alt" style="margin:0;width:100%" onclick="resume()">'+_t("Reprendre la partie","Resume game")+'</button>':'')
  +'<button class="go alt" style="margin:0;width:100%" onclick="collection()">Collection</button>'
- +'<div class="duo"><button class="go alt" style="margin:0" onclick="settings()">'+_t("Réglages","Settings")+'</button><button class="go alt" style="margin:0" onclick="scores()">Scores</button></div></div>'}
+ +'<div class="duo"><button class="go alt" style="margin:0" onclick="settings()">'+_t("Réglages","Settings")+'</button><button class="go alt" style="margin:0" onclick="scores()">'+_t("Classement","Scores")+'</button></div></div>'}
 function setup(){
  $("home").dataset.s=2;
  $("hm").innerHTML='<button class="back" onclick="home()">'+_t("← Retour","← Back")+'</button><h2 class="ttl">'+_t("Nouvelle partie","New game")+'</h2>'
